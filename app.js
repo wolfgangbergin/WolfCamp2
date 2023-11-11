@@ -6,7 +6,6 @@ const mongoose = require('mongoose')
 const Campground = require('./models/campground')
 const methodOverride = require('method-override')
 
-
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB...🏁🏁🏁'))
@@ -42,18 +41,21 @@ app.get('/campgrounds/:id/edit', async (req, res) => {
 })
 
 app.put('/campgrounds/:id', async (req, res) => {
+  l(req.body.campground)
 
- 
-  const campground = await Campground.findByIdAndUpdate(req.params.id, req.body, { runValidators: true })
-  res.redirect(`/campgrounds/${req.params.id}`)
+  const campground = await Campground.findByIdAndUpdate(req.params.id, { ...req.body.campground }, { runValidators: true, new: true })
+  res.redirect(`/campgrounds`)
+  // res.redirect(`/campgrounds/${req.params.id}`)
 })
-  
-
-
 
 app.get('/campgrounds/:id', async (req, res) => {
   const campground = await Campground.findById(req.params.id)
   res.render('campgrounds/show', { campground })
+})
+
+app.delete('/campgrounds/:id', async (req, res) => {
+  await Campground.findByIdAndDelete(req.params.id)
+  res.redirect('/campgrounds')
 })
 
 app.listen(3000, () => {
