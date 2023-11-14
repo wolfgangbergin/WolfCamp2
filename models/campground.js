@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 
 const CampgroundSchema = new mongoose.Schema({
     title: String,
+    Image: String,
     price: String,
     description: String,
     location: String
