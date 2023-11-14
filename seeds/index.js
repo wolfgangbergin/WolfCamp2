@@ -19,6 +19,7 @@ const seedDB = async () => {
       price,
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum? Quod, voluptatibus. Quibusdam, quae. Quod, quidem. Quaerat, quae. Quisquam, voluptatum? Quod, voluptatibus. Quibusdam, quae. Quod, quidem. Quaerat, quae.',
       image: 'https://source.unsplash.com/collection/483251',
+      wolfman: 'wolfman'
     })
     await camp.save()
   }
