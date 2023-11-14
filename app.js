@@ -14,7 +14,7 @@ mongoose
   .catch((err) => console.error('Could not connect to MongoDB...🤬🤬🤬', err))
 
 
-  
+
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
@@ -24,6 +24,8 @@ app.use(methodOverride('_method'))
 app.get('/', (req, res) => {
   res.render('home')
 })
+
+
 
 app.get('/campgrounds', async (req, res) => {
   const campgrounds = await Campground.find({})
