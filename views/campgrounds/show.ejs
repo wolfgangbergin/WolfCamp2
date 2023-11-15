@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-6 offset-3">
         <div class="card mb-3" >
-            <img src="<%= campground.image %>" >
+           <%- campground?.image && '<img src="https://source.unsplash.com/collection/483251" >' %>
             <div class="card-body">
               <h5 class="card-title"><%= campground.title %></h5>
               <p class="card-text"><%= campground.description %></p>

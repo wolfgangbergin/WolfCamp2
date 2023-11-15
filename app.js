@@ -14,7 +14,6 @@ mongoose
   .catch((err) => console.error('Could not connect to MongoDB...🤬🤬🤬', err))
 
 
-
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
@@ -33,8 +32,10 @@ app.get('/campgrounds', async (req, res) => {
 })
 
 app.post('/campgrounds', async (req, res) => {
+ 
   const campground = new Campground(req.body.campground)
   await campground.save()
+  l(req.body.campground)
   res.redirect(`/campgrounds`)
 })
 
