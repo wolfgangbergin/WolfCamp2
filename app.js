@@ -38,6 +38,8 @@ app.get(
 app.post(
   '/campgrounds',
   catchAsync(async (req, res, next) => {
+ if (!req.body.campground) throw new ExpressError('Invalid campground !!! 💩💩🤪🤪🤪🤪', 616)
+
     const campground = new Campground(req.body.campground)
     if (!campground) {
       throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
