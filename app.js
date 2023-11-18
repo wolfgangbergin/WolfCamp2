@@ -29,16 +29,14 @@ app.get('/campgrounds', async (req, res) => {
   res.render('campgrounds/index', { campgrounds })
 })
 
-app.post('/campgrounds', async (req, res, next) => {
-  try {
+app.post(
+  '/campgrounds',
+  catchAsync(async (req, res, next) => {
     const campground = new Campground(req.body.campground)
     await campground.save()
-    l(req.body.campground)
     res.redirect(`/campgrounds`)
-  } catch (e) {
-    next(e)
-  }
-})
+  })
+)
 
 app.get('/campgrounds/new', (req, res) => {
   res.render('campgrounds/new')
@@ -68,7 +66,7 @@ app.delete('/campgrounds/:id', async (req, res) => {
 })
 
 app.use((err, req, res, next) => {
-  res.send('Something went wrong')
+  res.send(err.message)
 })
 
 app.listen(3000, () => {
