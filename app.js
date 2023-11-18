@@ -29,7 +29,6 @@ app.get(
   catchAsync(async (req, res) => {
     const campgrounds = await Campground.find({})
     if (!campgrounds) {
-      l('kim414')
       throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
     }
     res.render('campgrounds/index', { campgrounds })
@@ -40,6 +39,9 @@ app.post(
   '/campgrounds',
   catchAsync(async (req, res, next) => {
     const campground = new Campground(req.body.campground)
+    if (!campground) {
+      throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
+    }
     await campground.save()
     res.redirect(`/campgrounds`)
   })
@@ -53,6 +55,9 @@ app.get(
   '/campgrounds/:id/edit',
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id)
+    if (!campground) {
+      throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
+    }
     res.render('campgrounds/edit', { campground })
   })
 )
@@ -61,6 +66,9 @@ app.put(
   '/campgrounds/:id',
   catchAsync(async (req, res) => {
     const campground = await Campground.findByIdAndUpdate(req.params.id, { ...req.body.campground }, { runValidators: true, new: true })
+    if (!campground) {
+      throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
+    }
     res.redirect(`/campgrounds`)
   })
 )
@@ -70,6 +78,9 @@ app.get(
   '/campgrounds/:id',
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id)
+    if (!campground) {
+      throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
+    }
     res.render('campgrounds/show', { campground })
   })
 )
