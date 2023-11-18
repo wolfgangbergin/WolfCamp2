@@ -73,7 +73,6 @@ app.put(
   })
 )
 
-
 app.get(
   '/campgrounds/:id',
   catchAsync(async (req, res) => {
@@ -93,8 +92,15 @@ app.delete(
   })
 )
 
+
+app.all('*', (req, res, next) => {
+  next(new ExpressError('Page Not Found🥜🥜', 404))
+})
+
 app.use((err, req, res, next) => {
-  res.send(err.message)
+  const { message = 'default error', statusCode = 500 } = err
+
+  res.status(statusCode).send(message)
 })
 
 app.listen(3000, () => {
