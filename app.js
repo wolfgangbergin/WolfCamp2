@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const Campground = require('./models/campground')
 const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate')
+const ExpressError = require('./utils/ExpressError')
 
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', { useNewUrlParser: true, useUnifiedTopology: true })
