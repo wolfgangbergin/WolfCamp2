@@ -18,7 +18,7 @@ const seedDB = async () => {
       title: `${descriptors[Math.floor(Math.random() * descriptors.length)]} ${places[Math.floor(Math.random() * places.length)]}`,
       price,
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum? Quod, voluptatibus. Quibusdam, quae. Quod, quidem. Quaerat, quae. Quisquam, voluptatum? Quod, voluptatibus. Quibusdam, quae. Quod, quidem. Quaerat, quae.',
-      image: 'https://source.unsplash.com/collection/483251',
+      image: 'https://www.desmoinesregister.com/gcdn/-mm-/a3bf82da6e654f6ea9c4df986dbf0437dc9f9c72/c=0-125-2762-1685/local/-/media/2015/02/23/IAGroup/DesMoines/635603064337329282-des.M0223FDFire009.JPG?width=700&height=396&fit=crop&format=pjpg&auto=webp',
       wolfman: 'wolfman'
     })
     await camp.save()
