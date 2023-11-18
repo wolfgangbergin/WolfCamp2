@@ -24,10 +24,17 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
-app.get('/campgrounds', async (req, res) => {
-  const campgrounds = await Campground.find({})
-  res.render('campgrounds/index', { campgrounds })
-})
+app.get(
+  '/campgrounds',
+  catchAsync(async (req, res) => {
+    const campgrounds = await Campground.find({})
+    if (!campgrounds) {
+      l('kim414')
+      throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
+    }
+    res.render('campgrounds/index', { campgrounds })
+  })
+)
 
 app.post(
   '/campgrounds',
@@ -42,28 +49,37 @@ app.get('/campgrounds/new', (req, res) => {
   res.render('campgrounds/new')
 })
 
-app.get('/campgrounds/:id/edit', async (req, res) => {
-  const campground = await Campground.findById(req.params.id)
-  res.render('campgrounds/edit', { campground })
-})
+app.get(
+  '/campgrounds/:id/edit',
+  catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id)
+    res.render('campgrounds/edit', { campground })
+  })
+)
 
-app.put('/campgrounds/:id', async (req, res) => {
-  l(req.body.campground)
+app.put(
+  '/campgrounds/:id',
+  catchAsync(async (req, res) => {
+    const campground = await Campground.findByIdAndUpdate(req.params.id, { ...req.body.campground }, { runValidators: true, new: true })
+    res.redirect(`/campgrounds`)
+  })
+)
 
-  const campground = await Campground.findByIdAndUpdate(req.params.id, { ...req.body.campground }, { runValidators: true, new: true })
-  res.redirect(`/campgrounds`)
-  // res.redirect(`/campgrounds/${req.params.id}`)
-})
+app.get(
+  '/campgrounds/:id',
+  catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id)
+    res.render('campgrounds/show', { campground })
+  })
+)
 
-app.get('/campgrounds/:id', async (req, res) => {
-  const campground = await Campground.findById(req.params.id)
-  res.render('campgrounds/show', { campground })
-})
-
-app.delete('/campgrounds/:id', async (req, res) => {
-  await Campground.findByIdAndDelete(req.params.id)
-  res.redirect('/campgrounds')
-})
+app.delete(
+  '/campgrounds/:id',
+  catchAsync(async (req, res) => {
+    await Campground.findByIdAndDelete(req.params.id)
+    res.redirect('/campgrounds')
+  })
+)
 
 app.use((err, req, res, next) => {
   res.send(err.message)
