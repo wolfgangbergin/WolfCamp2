@@ -7,12 +7,10 @@ const Campground = require('./models/campground')
 const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate')
 
-
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB...🏁🏁🏁'))
   .catch((err) => console.error('Could not connect to MongoDB...🤬🤬🤬', err))
-
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs')
@@ -24,26 +22,25 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
-
-
 app.get('/campgrounds', async (req, res) => {
   const campgrounds = await Campground.find({})
   res.render('campgrounds/index', { campgrounds })
 })
 
-app.post('/campgrounds', async (req, res) => {
- 
-  const campground = new Campground(req.body.campground)
-  await campground.save()
-  l(req.body.campground)
-  res.redirect(`/campgrounds`)
+app.post('/campgrounds', async (req, res, next) => {
+  try {
+    const campground = new Campground(req.body.campground)
+    await campground.save()
+    l(req.body.campground)
+    res.redirect(`/campgrounds`)
+  } catch (e) {
+    next(e)
+  }
 })
 
 app.get('/campgrounds/new', (req, res) => {
   res.render('campgrounds/new')
 })
-
-
 
 app.get('/campgrounds/:id/edit', async (req, res) => {
   const campground = await Campground.findById(req.params.id)
@@ -66,6 +63,10 @@ app.get('/campgrounds/:id', async (req, res) => {
 app.delete('/campgrounds/:id', async (req, res) => {
   await Campground.findByIdAndDelete(req.params.id)
   res.redirect('/campgrounds')
+})
+
+app.use((err, req, res, next) => {
+  res.send('Something went wrong')
 })
 
 app.listen(3000, () => {
