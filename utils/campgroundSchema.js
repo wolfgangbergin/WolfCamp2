@@ -14,7 +14,7 @@ const campgroundSchema = Joi.object({
 const validateCampground = (req, res, next) => {
   const { error } = campgroundSchema.validate(req.body)
   if (!error) return next()
-  const msg = error.details.map((el) => el.message).join(',')
-  throw new ExpressError(msg, 400)
+  
+  throw new ExpressError(error.details.map((el) => el.message).join(','), 400)
 }
 module.exports = validateCampground
