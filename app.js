@@ -40,7 +40,7 @@ app.get(
 
 app.post(
   '/campgrounds',
-  validateCampground,
+   validateCampground,
   catchAsync(async (req, res, next) => {
 
 
@@ -106,7 +106,7 @@ app.all('*', (req, res, next) => {
 app.use((err, req, res, next) => {
  
 if (!err.message) {err.message = 'Something went wrong',
-err.statusCode = 500}
+err.statusCode = 515}
   res.status(err.statusCode).render('error', { err })
 })
 
