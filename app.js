@@ -8,7 +8,7 @@ const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate')
 const ExpressError = require('./utils/ExpressError')
 const catchAsync = require('./utils/catchAsync')
-const Joi = require('joi')
+
 const validateCampground  = require('./utils/campgroundSchema')
 
 
