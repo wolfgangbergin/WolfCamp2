@@ -25,12 +25,3 @@ const campgroundSchema = Joi.object({
       next()
     }
   }
-//   const { error } = campgroundSchema.validate(req.body)
-//   if (error) {
-//     l(error)
-//     const msg = error.details.map(el => el.message).join(',')
-//     throw new ExpressError(msg, 400)
-//   }
-
-
-// campgroundSchema

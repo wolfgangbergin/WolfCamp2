@@ -37,27 +37,12 @@ app.get(
     res.render('campgrounds/index', { campgrounds })
   })
 )
-///////////////////////////////////////////////
+
 app.post(
   '/campgrounds',
-   campgroundSchema,
+  campgroundSchema,
   catchAsync(async (req, res, next) => {
 
-//  const campgroundSchema = Joi.object({
-//   campground: Joi.object({
-//     title: Joi.string().required(),
-//     price: Joi.number().required().min(0),
-//     image: Joi.string().required(),
-//     location: Joi.string().required(),
-//     description: Joi.string().required()
-//   }).required()
-// })
-// const { error } = campgroundSchema.validate(req.body)
-// if (error) {
-//   l(error)
-//   const msg = error.details.map(el => el.message).join(',')
-//   throw new ExpressError(msg, 400)
-// }
 
 
     const campground = new Campground(req.body.campground)
@@ -66,7 +51,7 @@ app.post(
     res.redirect(`/campgrounds`)
   })
 )
-///////////////////////////////////////////////
+
 app.get('/campgrounds/new', (req, res) => {
   res.render('campgrounds/new')
 })
@@ -84,6 +69,7 @@ app.get(
 
 app.put(
   '/campgrounds/:id',
+  campgroundSchema,
   catchAsync(async (req, res) => {
     const campground = await Campground.findByIdAndUpdate(req.params.id, { ...req.body.campground }, { runValidators: true, new: true })
     if (!campground) {
