@@ -9,7 +9,7 @@ const ejsMate = require('ejs-mate')
 const ExpressError = require('./utils/ExpressError')
 const catchAsync = require('./utils/catchAsync')
 const Joi = require('joi')
-const campgroundSchema = require('./utils/campgroundSchema')
+const validateCampground  = require('./utils/campgroundSchema')
 
 
 mongoose
@@ -40,7 +40,7 @@ app.get(
 
 app.post(
   '/campgrounds',
-  campgroundSchema,
+  validateCampground,
   catchAsync(async (req, res, next) => {
 
 
@@ -69,7 +69,7 @@ app.get(
 
 app.put(
   '/campgrounds/:id',
-  campgroundSchema,
+  validateCampground,
   catchAsync(async (req, res) => {
     const campground = await Campground.findByIdAndUpdate(req.params.id, { ...req.body.campground }, { runValidators: true, new: true })
     if (!campground) {
