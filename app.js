@@ -9,6 +9,7 @@ const ejsMate = require('ejs-mate')
 const ExpressError = require('./utils/ExpressError')
 const catchAsync = require('./utils/catchAsync')
 const Joi = require('joi')
+const campgroundSchema = require('./utils/campgroundSchema')
 
 
 mongoose
@@ -39,23 +40,24 @@ app.get(
 ///////////////////////////////////////////////
 app.post(
   '/campgrounds',
+   campgroundSchema,
   catchAsync(async (req, res, next) => {
 
- const campgroundSchema = Joi.object({
-  campground: Joi.object({
-    title: Joi.string().required(),
-    price: Joi.number().required().min(0),
-    image: Joi.string().required(),
-    location: Joi.string().required(),
-    description: Joi.string().required()
-  }).required()
-})
-const { error } = campgroundSchema.validate(req.body)
-if (error) {
-  l(error)
-  const msg = error.details.map(el => el.message).join(',')
-  throw new ExpressError(msg, 400)
-}
+//  const campgroundSchema = Joi.object({
+//   campground: Joi.object({
+//     title: Joi.string().required(),
+//     price: Joi.number().required().min(0),
+//     image: Joi.string().required(),
+//     location: Joi.string().required(),
+//     description: Joi.string().required()
+//   }).required()
+// })
+// const { error } = campgroundSchema.validate(req.body)
+// if (error) {
+//   l(error)
+//   const msg = error.details.map(el => el.message).join(',')
+//   throw new ExpressError(msg, 400)
+// }
 
 
     const campground = new Campground(req.body.campground)
