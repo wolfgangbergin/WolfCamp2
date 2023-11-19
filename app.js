@@ -102,7 +102,7 @@ app.all('*', (req, res, next) => {
 app.use((err, req, res, next) => {
   const { message = 'default error', statusCode = 500 } = err
 
-  res.status(statusCode).send(message)
+  res.status(statusCode).render('error', { message })
 })
 
 app.listen(3000, () => {
