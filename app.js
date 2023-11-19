@@ -8,6 +8,8 @@ const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate')
 const ExpressError = require('./utils/ExpressError')
 const catchAsync = require('./utils/catchAsync')
+const Joi = require('joi')
+
 
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -34,21 +36,35 @@ app.get(
     res.render('campgrounds/index', { campgrounds })
   })
 )
-
+///////////////////////////////////////////////
 app.post(
   '/campgrounds',
   catchAsync(async (req, res, next) => {
- if (!req.body.campground) throw new ExpressError('Invalid campground !!! 💩💩🤪🤪🤪🤪', 616)
+
+ const campgroundSchema = Joi.object({
+  campground: Joi.object({
+    title: Joi.string().required(),
+    price: Joi.number().required().min(0),
+    image: Joi.string().required(),
+    location: Joi.string().required(),
+    description: Joi.string().required()
+  }).required()
+})
+const { error } = campgroundSchema.validate(req.body)
+if (error) {
+  l(error)
+  const msg = error.details.map(el => el.message).join(',')
+  throw new ExpressError(msg, 400)
+}
+
 
     const campground = new Campground(req.body.campground)
-    if (!campground) {
-      throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
-    }
+    
     await campground.save()
     res.redirect(`/campgrounds`)
   })
 )
-
+///////////////////////////////////////////////
 app.get('/campgrounds/new', (req, res) => {
   res.render('campgrounds/new')
 })
@@ -100,9 +116,10 @@ app.all('*', (req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
-  const { message = 'default error', statusCode = 500 } = err
-
-  res.status(statusCode).render('error', { message })
+ 
+if (!err.message) {err.message = 'Something went wrong',
+err.statusCode = 500}
+  res.status(err.statusCode).render('error', { err })
 })
 
 app.listen(3000, () => {
