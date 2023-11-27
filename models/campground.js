@@ -8,6 +8,12 @@ const CampgroundSchema = new mongoose.Schema({
     description: String,
     location: String,
     wolfman: String,
+    reviews: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ]
     })
 
 
