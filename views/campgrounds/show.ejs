@@ -22,10 +22,13 @@
             <div class="card-footer text-muted">
                 Posted 2 days ago
                 </div>
+                <form  action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+                  <button>Delete</button>
+              </form>
           </div>
          
           <form  action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
-            <button>Delete</button>
+            
         </form>
     </div>
 </div>
