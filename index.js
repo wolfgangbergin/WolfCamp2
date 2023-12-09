@@ -107,12 +107,14 @@ app.post(
     l('kimbo')
      const campground = await Campground.findById(req.params.id)
     const review = new Review(req.body.review)
-    // l(review)
-    // campground.reviews.push(review)
-    // await campground.save()
-    // res.redirect(`/campgrounds/${req.params.id}`)
+   
+    campground.reviews.push(review)
+    
+  await Promise.all([review.save(), campground.save()])
 
-    res.send('kimbo')
+    res.redirect(`/campgrounds/${campground._id}`)
+
+    // res.send('kimbo')
   })
 )
 
