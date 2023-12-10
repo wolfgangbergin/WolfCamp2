@@ -11,12 +11,12 @@ const campgroundSchema = Joi.object({
   }).required(),
 })
 
-const validateCampground = (req, res, next) => {
+module.exports.validateCampground = (req, res, next) => {
   const { error } = campgroundSchema.validate(req.body)
   if (!error) return next()
   throw new ExpressError(error.details.map((el) => el.message).join(','), 400)
 }
-module.exports = validateCampground
+// module.exports = validateCampground
 
 
 
@@ -30,6 +30,7 @@ module.exports.reviewSchema = Joi.object({
 
 module.exports.validateReview = (req, res, next) => {
   const { error } = reviewSchema.validate(req.body)
+  l( error)
   if (!error) return next()
   throw new ExpressError(error.details.map((el) => el.message).join(','), 400)
 }

@@ -9,9 +9,12 @@ const ejsMate = require('ejs-mate')
 const ExpressError = require('./utils/ExpressError')
 const catchAsync = require('./utils/catchAsync')
 const Review = require('./models/review')
-const validateCampground = require('./utils/campgroundSchema')
+const {
+  validateCampground,
+  reviewSchema,
+  validateReview,
+} = require('./utils/campgroundSchema')
 
-l(validateCampground)
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', {
     useNewUrlParser: true,
@@ -25,7 +28,7 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'))
 
 app.get('/', (req, res) => {
   res.render('home')
@@ -105,14 +108,15 @@ app.delete(
 
 app.post(
   '/campgrounds/:id/reviews',
+  validateReview,
   catchAsync(async (req, res) => {
     l('kimbo')
-     const campground = await Campground.findById(req.params.id)
+    const campground = await Campground.findById(req.params.id)
     const review = new Review(req.body.review)
-   
+
     campground.reviews.push(review)
-    
-  await Promise.all([review.save(), campground.save()])
+
+    await Promise.all([review.save(), campground.save()])
 
     res.redirect(`/campgrounds/${campground._id}`)
 
