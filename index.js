@@ -108,7 +108,7 @@ app.delete(
 
 app.post(
   '/campgrounds/:id/reviews',
-  validateReview,
+  //  validateReview,
   catchAsync(async (req, res) => {
     l('kimbo')
     const campground = await Campground.findById(req.params.id)
