@@ -17,3 +17,20 @@ const validateCampground = (req, res, next) => {
   throw new ExpressError(error.details.map((el) => el.message).join(','), 400)
 }
 module.exports = validateCampground
+
+
+
+// Path: utils/reviewSchema.js
+module.exports.reviewSchema = Joi.object({
+  review: Joi.object({
+    rating: Joi.number().required().min(1).max(5),
+    body: Joi.string().required(),
+  }).required(),
+})
+
+module.exports.validateReview = (req, res, next) => {
+  const { error } = reviewSchema.validate(req.body)
+  if (!error) return next()
+  throw new ExpressError(error.details.map((el) => el.message).join(','), 400)
+}
+

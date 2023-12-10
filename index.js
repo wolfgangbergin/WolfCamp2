@@ -11,6 +11,7 @@ const catchAsync = require('./utils/catchAsync')
 const Review = require('./models/review')
 const validateCampground = require('./utils/campgroundSchema')
 
+l(validateCampground)
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', {
     useNewUrlParser: true,
