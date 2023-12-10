@@ -126,8 +126,12 @@ app.all('*', (req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
+  
   if (!err.message) {
-    ;(err.message = 'Something went wrong'), (err.statusCode = 515)
+    err.message = 'Something went wrong'
+  }
+  if (!err.statusCode) {
+    err.statusCode = 515
   }
   res.status(err.statusCode).render('error', { err })
 })
