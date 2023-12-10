@@ -1,3 +1,4 @@
 .kimboBackground{
-    background-color: red;
+    background-image: linear-gradient(blue, black);
+    color: white;
 }

@@ -26,10 +26,15 @@
         <button>Delete</button>
       </form>
     </div>
-<h2>Submit a Reviews</h2>
+    <h2>Submit a Reviews</h2>
 
-    <form action="/campgrounds/<%=campground._id %>/reviews" method="POST">
-      <div class="form-group">
+    <form
+      action="/campgrounds/<%=campground._id %>/reviews"
+      class="form-group validated-form"
+      method="POST"
+      novalidate
+    >
+      <div>
         <label for="rating">Rating</label>
         <input
           type="number"
@@ -48,6 +53,7 @@
           id="body"
           name="review[body]"
           rows="3"
+          required
         ></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
