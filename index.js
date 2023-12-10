@@ -117,7 +117,7 @@ app.post(
 
     await Promise.all([review.save(), campground.save()])
 
-    res.redirect(`/campgrounds/${campground._id}`)
+    res.redirect(`/campgrounds`)
   })
 )
 
@@ -126,13 +126,8 @@ app.all('*', (req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
-  
-  if (!err.message) {
-    err.message = 'Something went wrong'
-  }
-  if (!err.statusCode) {
-    err.statusCode = 515
-  }
+  !err.message && (err.message = 'Something went wrong')
+  !err.statusCode && (err.statusCode = 515)
   res.status(err.statusCode).render('error', { err })
 })
 
