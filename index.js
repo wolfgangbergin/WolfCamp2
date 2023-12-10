@@ -11,7 +11,7 @@ const catchAsync = require('./utils/catchAsync')
 const Review = require('./models/review')
 const {
   validateCampground,
-  reviewSchema,
+
   validateReview,
 } = require('./utils/campgroundSchema')
 
@@ -108,9 +108,8 @@ app.delete(
 
 app.post(
   '/campgrounds/:id/reviews',
-  //  validateReview,
+  validateReview,
   catchAsync(async (req, res) => {
-    l('kimbo')
     const campground = await Campground.findById(req.params.id)
     const review = new Review(req.body.review)
 
@@ -119,8 +118,6 @@ app.post(
     await Promise.all([review.save(), campground.save()])
 
     res.redirect(`/campgrounds/${campground._id}`)
-
-    // res.send('kimbo')
   })
 )
 
