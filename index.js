@@ -90,7 +90,8 @@ app.put(
 app.get(
   '/campgrounds/:id',
   catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id)
+    const campground = await Campground.findById(req.params.id).populate('reviews')
+   
     if (!campground) {
       throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
     }
@@ -117,7 +118,7 @@ app.post(
 
     await Promise.all([review.save(), campground.save()])
 
-    res.redirect(`/campgrounds`)
+    res.redirect(`/campgrounds/${campground._id}`)
   })
 )
 
