@@ -80,6 +80,13 @@
         <p class="card-text">Review: <%= review.body %></p>
        
       </div>
+      <div class="card-footer text-muted">Posted 2 days ago
+      <form
+        action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE"
+        method="POST"
+      >
+        <button>Delete</button>
+      </form>
     </div>
       <%} %>
   </div>

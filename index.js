@@ -90,8 +90,10 @@ app.put(
 app.get(
   '/campgrounds/:id',
   catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id).populate('reviews')
-   
+    const campground = await Campground.findById(req.params.id).populate(
+      'reviews'
+    )
+
     if (!campground) {
       throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
     }
@@ -104,6 +106,15 @@ app.delete(
   catchAsync(async (req, res) => {
     await Campground.findByIdAndDelete(req.params.id)
     res.redirect('/campgrounds')
+  })
+)
+
+app.delete(
+  '/campgrounds/:id/reviews/:reviewId',
+  catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id)
+    await Review.findByIdAndDelete(req.params.reviewId)
+    res.redirect(`/campgrounds/${campground._id}`)
   })
 )
 
