@@ -117,6 +117,10 @@ app.delete(
   catchAsync(async (req, res) => {
     const { title, image, price, description, location, reviews } =
       await Campground.findByIdAndDelete(req.params.id)
+    const tempString = `new ObjectId('${req.params.reviewId}')`
+    l(tempString)
+    l(reviews[0])
+    
 
     const newCampground = new Campground({
       title,
