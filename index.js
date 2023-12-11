@@ -95,7 +95,7 @@ app.get(
     )
 
     if (!campground) {
-      throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
+      throw new ExpressError('Campground not found!!! 💩💩💩💩🤪🤪🤪🤪', 515)
     }
     res.render('campgrounds/show', { campground })
   })
@@ -109,14 +109,72 @@ app.delete(
   })
 )
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//
+
+
 app.delete(
   '/campgrounds/:id/reviews/:reviewId',
   catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id)
-    await Review.findByIdAndDelete(req.params.reviewId)
-    res.redirect(`/campgrounds/${campground._id}`)
+    const oldCampground = await Campground.findById(req.params.id)
+    const newCampground = await new Campground(...oldCampground)
+    // await Review.findByIdAndDelete(req.params.reviewId)
+    res.redirect(`/campgrounds/${newCampground._id}`)
   })
 )
+
+
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.post(
   '/campgrounds/:id/reviews',
