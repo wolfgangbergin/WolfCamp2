@@ -109,72 +109,32 @@ app.delete(
   })
 )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//
-
+// title, image, price, description, location, reviews
 
 app.delete(
   '/campgrounds/:id/reviews/:reviewId',
   catchAsync(async (req, res) => {
-    const oldCampground = await Campground.findById(req.params.id)
-    const newCampground = await new Campground(...oldCampground)
+    const { title, image, price, description, location, reviews } =
+      await Campground.findByIdAndDelete(req.params.id)
+
+    const newCampground = new Campground({
+      title,
+      image,
+      price,
+      description,
+      location,
+      reviews,
+    })
+    await newCampground.save()
+
     // await Review.findByIdAndDelete(req.params.reviewId)
-    res.redirect(`/campgrounds/${newCampground._id}`)
+    //res.redirect(`/campgrounds/${newCampground._id}`)
+    res.redirect(`/campgrounds`)
   })
 )
 
-
-
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.post(
   '/campgrounds/:id/reviews',
