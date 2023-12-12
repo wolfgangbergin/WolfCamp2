@@ -115,12 +115,20 @@ app.delete(
 app.delete(
   '/campgrounds/:id/reviews/:reviewId',
   catchAsync(async (req, res) => {
+      l('true313')
     const { title, image, price, description, location, reviews } =
       await Campground.findByIdAndDelete(req.params.id)
-    const tempString = `new ObjectId('${req.params.reviewId}')`
-    l(tempString)
-    l(reviews[0])
     
+
+    let newReviews = []
+    reviews.forEach((element) => {
+      if (element.toString() === req.params.reviewId) {
+        l('true414')
+        return
+      } else {
+        newReviews.push(element)
+      }
+    })
 
     const newCampground = new Campground({
       title,
@@ -128,13 +136,12 @@ app.delete(
       price,
       description,
       location,
-      reviews,
+      reviews: newReviews,
     })
     await newCampground.save()
 
-    // await Review.findByIdAndDelete(req.params.reviewId)
-    //res.redirect(`/campgrounds/${newCampground._id}`)
-    res.redirect(`/campgrounds`)
+    await Review.findByIdAndDelete(req.params.reviewId)
+    res.redirect(`/campgrounds/${newCampground._id}`)
   })
 )
 
