@@ -115,18 +115,19 @@ app.delete(
 app.delete(
   '/campgrounds/:id/reviews/:reviewId',
   catchAsync(async (req, res) => {
+    const {id, reviewId} = req.params
     
     const { title, image, price, description, location, reviews } =
-      await Campground.findByIdAndDelete(req.params.id)
+      await Campground.findByIdAndDelete(id)
 
     let newReviews = []
     await Promise.all(
       reviews.map((element) => {
         return new Promise((res) => {
-          if (element.toString() === req.params.reviewId) {
+          if (element.toString() === reviewId) {
           
             res()
-          } else if(!(element.toString() === req.params.reviewId)){
+          } else if(!(element.toString() === reviewId)){
             newReviews.push(element)
             res()
           }
@@ -144,7 +145,7 @@ app.delete(
     })
     await newCampground.save()
 
-    await Review.findByIdAndDelete(req.params.reviewId)
+    await Review.findByIdAndDelete(reviewId)
     res.redirect(`/campgrounds/${newCampground._id}`)
   })
 )
