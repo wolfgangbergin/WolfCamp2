@@ -19,11 +19,13 @@ const CampgroundSchema = new mongoose.Schema({
 
 CampgroundSchema.post('findOneAndDelete', async function (data) {
   if (data) {
-   data.reviews.forEach(async(item)=>{
-   const temp1 = await Review.findByIdAndDelete(item._id)
-   l(temp1)
-   })
+
+    data.reviews.forEach(async(ele)=>{
+        const temp1 = await Review.findByIdAndDelete(ele._id)
+        l(temp1)
+    })
+   
   }
 })
-
+//const campground = await Campground.findByIdAndUpdate(id, {$pull: {reviews: reviewId}})
 module.exports = mongoose.model('Campground', CampgroundSchema)
