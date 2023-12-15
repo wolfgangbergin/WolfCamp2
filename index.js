@@ -14,6 +14,7 @@ const {
 
   validateReview,
 } = require('./utils/campgroundSchema')
+const review = require('./models/review')
 
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', {
@@ -104,7 +105,9 @@ app.get(
 app.delete(
   '/campgrounds/:id',
   catchAsync(async (req, res) => {
-    await Campground.findByIdAndDelete(req.params.id)
+    const {id} = req.params
+    // await Campground.deleteMany({id: {$in: [review]}})
+    await Campground.findByIdAndDelete(id)
     res.redirect('/campgrounds')
   })
 )
@@ -119,20 +122,7 @@ app.delete(
 
    const campground = await Campground.findByIdAndUpdate(id, {$pull: {reviews: reviewId}})
 
-    // const { title, image, price, description, location, reviews } =
-    //   await Campground.findByIdAndDelete(id)
-
-
   
-    // const newCampground = new Campground({
-    //   title,
-    //   image,
-    //   price,
-    //   description,
-    //   location,
-    //   reviews
-    // })
-    // await newCampground.save()
 
     await Review.findByIdAndDelete(reviewId)
     res.redirect(`/campgrounds/${campground._id}`)
