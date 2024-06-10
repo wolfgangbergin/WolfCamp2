@@ -9,6 +9,9 @@ const ejsMate = require('ejs-mate')
 const ExpressError = require('./utils/ExpressError')
 const catchAsync = require('./utils/catchAsync')
 const Review = require('./models/review')
+const campgrounds = require('./routes/campgrounds')
+
+
 const {
   validateCampground,
 
@@ -27,24 +30,18 @@ mongoose
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
+
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(__dirname + '/public'))
+
+app.use('/campgrounds', campgrounds)
 
 app.get('/', (req, res) => {
   res.render('home')
 })
 
-app.get(
-  '/campgrounds',
-  catchAsync(async (req, res) => {
-    const campgrounds = await Campground.find({})
-    if (!campgrounds) {
-      throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
-    }
-    res.render('campgrounds/index', { campgrounds })
-  })
-)
+
 
 app.post(
   '/campgrounds',
