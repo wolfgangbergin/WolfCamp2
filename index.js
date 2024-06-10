@@ -11,7 +11,6 @@ const catchAsync = require('./utils/catchAsync')
 const Review = require('./models/review')
 const campgrounds = require('./routes/campgrounds')
 
-
 const {
   validateCampground,
 
@@ -43,106 +42,7 @@ app.get('/', (req, res) => {
 
 
 
-// app.post(
-//   '/campgrounds',
-//   validateCampground,
-//   catchAsync(async (req, res, next) => {
-//     const campground = new Campground(req.body.campground)
 
-//     await campground.save()
-//     res.redirect(`/campgrounds`)
-//   })
-// )
-
-app.get('/campgrounds/new', (req, res) => {
-  res.render('campgrounds/new')
-})
-
-app.get(
-  '/campgrounds/:id/edit',
-  catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id)
-    if (!campground) {
-      throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
-    }
-    res.render('campgrounds/edit', { campground })
-  })
-)
-
-app.put(
-  '/campgrounds/:id',
-  validateCampground,
-  catchAsync(async (req, res) => {
-    const campground = await Campground.findByIdAndUpdate(
-      req.params.id,
-      { ...req.body.campground },
-      { runValidators: true, new: true }
-    )
-    if (!campground) {
-      throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
-    }
-    res.redirect(`/campgrounds`)
-  })
-)
-
-app.get(
-  '/campgrounds/:id',
-  catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id).populate(
-      'reviews'
-    )
-
-    if (!campground) {
-      throw new ExpressError('Campground not found!!! 💩💩💩💩🤪🤪🤪🤪', 515)
-    }
-    res.render('campgrounds/show', { campground })
-  })
-)
-
-app.delete(
-  '/campgrounds/:id',
-  catchAsync(async (req, res) => {
-    const {id} = req.params
-    // await Campground.deleteMany({id: {$in: [review]}})
-    await Campground.findByIdAndDelete(id)
-    res.redirect('/campgrounds')
-  })
-)
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//
-// title, image, price, description, location, reviews
-
-app.delete(
-  '/campgrounds/:id/reviews/:reviewId',
-  catchAsync(async (req, res) => {
-    const {id, reviewId} = req.params
-
-   const campground = await Campground.findByIdAndUpdate(id, {$pull: {reviews: reviewId}})
-
-  
-
-    await Review.findByIdAndDelete(reviewId)
-    res.redirect(`/campgrounds/${campground._id}`)
-  })
-)
-
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//
-
-app.post(
-  '/campgrounds/:id/reviews',
-  validateReview,
-  catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id)
-    const review = new Review(req.body.review)
-
-    campground.reviews.push(review)
-
-    await Promise.all([review.save(), campground.save()])
-
-    res.redirect(`/campgrounds/${campground._id}`)
-  })
-)
 
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found🥜🥜', 404))
