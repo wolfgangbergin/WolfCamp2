@@ -43,16 +43,16 @@ app.get('/', (req, res) => {
 
 
 
-app.post(
-  '/campgrounds',
-  validateCampground,
-  catchAsync(async (req, res, next) => {
-    const campground = new Campground(req.body.campground)
+// app.post(
+//   '/campgrounds',
+//   validateCampground,
+//   catchAsync(async (req, res, next) => {
+//     const campground = new Campground(req.body.campground)
 
-    await campground.save()
-    res.redirect(`/campgrounds`)
-  })
-)
+//     await campground.save()
+//     res.redirect(`/campgrounds`)
+//   })
+// )
 
 app.get('/campgrounds/new', (req, res) => {
   res.render('campgrounds/new')
