@@ -12,6 +12,13 @@ const catchAsync = require('../utils/catchAsync')
 const Review = require('../models/review')
 const router = express.Router();
 
+const {
+  validateCampground,
+
+  validateReview,
+} = require('../utils/campgroundSchema')
+const review = require('../models/review')
+
 
 router.get(
   '/',
