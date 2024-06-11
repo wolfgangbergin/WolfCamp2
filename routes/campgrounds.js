@@ -20,6 +20,23 @@ const {
 const review = require('../models/review')
 
 
+
+router.use('/deleteAll', (req, res) => {
+  Campground.deleteMany({} ).then(() => {
+    res.redirect('/campgrounds')  })
+
+})
+
+
+// router.delete(
+//   '/deleteAll',
+//   catchAsync(async (req, res) => {
+    
+//     await Campground.deleteMany({})
+//     res.redirect('/campgrounds')
+//   })
+// )
+
 router.get(
   '/',
   catchAsync(async (req, res) => {
@@ -27,6 +44,9 @@ router.get(
     if (!campgrounds) {
       throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
     }
+
+    campgrounds.reverse()
+   
     res.render('campgrounds/index', { campgrounds })
   })
 )
