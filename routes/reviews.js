@@ -1,5 +1,5 @@
 
-require('../wolfgang')
+
 const express = require('express')
 const app = express()
 const path = require('path')
@@ -12,13 +12,14 @@ const catchAsync = require('../utils/catchAsync')
 const Review = require('../models/review')
 const router = express.Router();
 
+
 const {
   validateCampground,
 
   validateReview,
 } = require('../utils/campgroundSchema')
 
-const review = require('../models/review')
+
 
 
 

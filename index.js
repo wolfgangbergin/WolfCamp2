@@ -12,6 +12,8 @@ const Review = require('./models/review')
 const campgrounds = require('./routes/campgrounds')
 const reviews = require('./routes/reviews')
 const wolf = require('./routes/wolf')
+const router = express.Router();
+
 
 const {
   validateCampground,
