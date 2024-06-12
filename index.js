@@ -10,13 +10,15 @@ const ExpressError = require('./utils/ExpressError')
 const catchAsync = require('./utils/catchAsync')
 const Review = require('./models/review')
 const campgrounds = require('./routes/campgrounds')
+const reviews = require('./routes/reviews')
+const wolf = require('./routes/wolf')
 
 const {
   validateCampground,
 
   validateReview,
 } = require('./utils/campgroundSchema')
-const review = require('./models/review')
+
 
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', {
@@ -35,10 +37,8 @@ app.use(methodOverride('_method'))
 app.use(express.static(__dirname + '/public'))
 
 app.use('/campgrounds', campgrounds)
-
-app.get('/', (req, res) => {
-  res.render('home')
-})
+app.use('/reviews', reviews)
+app.use('/wolf', wolf)
 
 
 

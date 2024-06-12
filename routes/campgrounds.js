@@ -28,14 +28,7 @@ router.use('/deleteAll', (req, res) => {
 })
 
 
-// router.delete(
-//   '/deleteAll',
-//   catchAsync(async (req, res) => {
-    
-//     await Campground.deleteMany({})
-//     res.redirect('/campgrounds')
-//   })
-// )
+
 
 router.get(
   '/',
