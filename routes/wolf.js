@@ -1,13 +1,8 @@
-
-
-const router = express.Router();
+const router = express.Router()
 
 router.get('/', (req, res) => {
+  l(wolfgang.kimbo)
   res.send('wolf')
 })
 
-
-
-
-
-module.exports = router;
+module.exports = router

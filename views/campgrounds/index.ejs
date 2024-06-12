@@ -18,7 +18,16 @@
         <p class="card-text">
           <small class="text-muted"><%= campground.location %></small>
         </p>
+        
+        
+        <form
+        action="/campgrounds/<%= campground._id %>?_method=DELETE"
+        method="POST"
+        >
         <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">View</a>
+        <button class="btn btn-danger">Delete</button>
+      </form>
+
       </div>
     </div>
   </div>

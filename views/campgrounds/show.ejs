@@ -14,7 +14,7 @@
       </ul>
       <div class="card-body">
         <a href="/campgrounds" class="card-link btn btn-info">Go Back</a>
-        <a href="/campgrounds/<%= campground._id %>/edit" class="card-link"
+        <a href="/campgrounds/<%= campground._id %>/edit" class="btn btn-danger"
           >Edit</a
         >
       </div>
@@ -23,7 +23,7 @@
         action="/campgrounds/<%= campground._id %>?_method=DELETE"
         method="POST"
       >
-        <button>Delete</button>
+        <button class="btn btn-danger">Delete</button>
       </form>
     </div>
     

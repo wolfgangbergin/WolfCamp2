@@ -1,6 +1,4 @@
-
-
-const router = express.Router();
+const router = express.Router()
 
 const {
   validateCampground,
@@ -9,16 +7,11 @@ const {
 } = require('../utils/campgroundSchema')
 const review = require('../models/review')
 
-
-
 router.use('/deleteAll', (req, res) => {
-  Campground.deleteMany({} ).then(() => {
-    res.redirect('/campgrounds')  })
-
+  Campground.deleteMany({}).then(() => {
+    res.redirect('/campgrounds')
+  })
 })
-
-
-
 
 router.get(
   '/',
@@ -30,11 +23,10 @@ router.get(
     }
 
     campgrounds.reverse()
-   
+
     res.render('campgrounds/index', { campgrounds })
   })
 )
-
 
 router.post(
   '/',
@@ -61,7 +53,6 @@ router.get(
     res.render('campgrounds/edit', { campground })
   })
 )
-
 
 router.put(
   '/:id',
@@ -93,16 +84,14 @@ router.get(
   })
 )
 
-
 router.delete(
   '/:id',
   catchAsync(async (req, res) => {
-    const {id} = req.params
+    const { id } = req.params
     await Campground.findByIdAndDelete(id)
     res.redirect('/campgrounds')
   })
 )
-
 
 router.delete(
   '/:id/reviews/:reviewId',
@@ -133,4 +122,4 @@ router.post(
   })
 )
 
-module.exports = router;
+module.exports = router

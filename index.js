@@ -1,13 +1,10 @@
 require('./wolfgang')
 
-
-
 const {
   validateCampground,
 
   validateReview,
 } = require('./utils/campgroundSchema')
-
 
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', {
@@ -28,11 +25,6 @@ app.use(express.static(__dirname + '/public'))
 app.use('/campgrounds', campgrounds)
 app.use('/reviews', reviews)
 app.use('/wolf', wolf)
-
-
-
-
-
 
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found🥜🥜', 404))
