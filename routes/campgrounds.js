@@ -17,7 +17,7 @@ router.get(
   '/',
   catchAsync(async (req, res) => {
     const campgrounds = await Campground.find({})
-    l('wolfgang')
+
     if (!campgrounds) {
       throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
     }
