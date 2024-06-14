@@ -1,8 +1,7 @@
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  l(wolfgang.kimbo)
-  res.send('wolf')
+  res.send('wolf313')
 })
 
 module.exports = router

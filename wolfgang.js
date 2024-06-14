@@ -14,7 +14,8 @@ globalThis.Review = require('./models/review')
 globalThis.campgrounds = require('./routes/campgrounds')
 globalThis.reviews = require('./routes/reviews')
 globalThis.wolf = require('./routes/wolf')
-globalThis.routerr = express.Router()
+
+
 
 
 globalThis.wolfgang = {

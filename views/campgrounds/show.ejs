@@ -38,7 +38,7 @@
   <h2>Submit a Reviews</h2>
 
   <form
-    action="/campgrounds/<%=campground._id %>/reviews"
+    action="/reviews/<%=campground._id %>"
     class="form-group validated-form"
     method="POST"
     novalidate
@@ -69,6 +69,7 @@
         Please provide a review.
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+ 
   </form>
   <% for(let review of campground.reviews) { %>
     <div class="card mb-3">
@@ -80,13 +81,14 @@
         <p class="card-text">Review: <%= review.body %></p>
        
       </div>
-      <div class="card-footer text-muted">Posted 2 days ago
+      <div class="card-footer text-muted">Posted 21 days ago
       <form
-        action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE"
+        action="/reviews/<%= campground._id %>/<%= review._id %>?_method=DELETE"
         method="POST"
       >
         <button class="btn btn-sm btn-danger">Delete</button>
       </form>
+     
     </div>
       <%} %>
   </div>

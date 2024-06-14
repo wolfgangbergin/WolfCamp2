@@ -7,7 +7,7 @@ const {
 } = require('../utils/campgroundSchema')
 
 router.delete(
-  '/reviews/:reviewId',
+  '/:id/:reviewId',
   catchAsync(async (req, res) => {
     const { id, reviewId } = req.params
 
@@ -21,7 +21,7 @@ router.delete(
 )
 
 router.post(
-  '/reviews',
+  '/:id',
   validateReview,
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id)
