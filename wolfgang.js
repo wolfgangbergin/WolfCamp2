@@ -1,5 +1,20 @@
 globalThis.l = console.log
 globalThis.d = console.dir
+globalThis.Joi = require('joi')
+const ExpressError = require('./utils/ExpressError')
+
+
+
+
+
+
+
+const { validateReview, validateCampground } = require('./utils/campgroundSchema')
+
+globalThis.validateRevieww = validateReview
+globalThis.validateCampground = validateCampground
+
+
 
 globalThis.express = require('express')
 globalThis.app = express()
@@ -9,18 +24,14 @@ globalThis.Campground = require('./models/campground')
 globalThis.methodOverride = require('method-override')
 globalThis.ejsMate = require('ejs-mate')
 globalThis.ExpressError = require('./utils/ExpressError')
+globalThis.test3 = require('./utils/ExpressError')
 globalThis.catchAsync = require('./utils/catchAsync')
 globalThis.Review = require('./models/review')
 globalThis.campgrounds = require('./routes/campgrounds')
 globalThis.reviews = require('./routes/reviews')
 globalThis.wolf = require('./routes/wolf')
 
+globalThis.wolfgang = {}
 
-
-
-globalThis.wolfgang = {
-    
-    
-}
 
 exports

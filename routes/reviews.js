@@ -1,11 +1,5 @@
 const router = express.Router()
 
-const {
-  validateCampground,
-
-  validateReview,
-} = require('../utils/campgroundSchema')
-
 router.delete(
   '/:id/:reviewId',
   catchAsync(async (req, res) => {
@@ -22,7 +16,7 @@ router.delete(
 
 router.post(
   '/:id',
-  validateReview,
+  validateRevieww,
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id)
     const review = new Review(req.body.review)

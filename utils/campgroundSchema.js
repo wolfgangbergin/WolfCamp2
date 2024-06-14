@@ -1,5 +1,4 @@
-const Joi = require('joi')
-const ExpressError = require('./ExpressError')
+
 
 const campgroundSchema = Joi.object({
   campground: Joi.object({
@@ -16,9 +15,8 @@ module.exports.validateCampground = (req, res, next) => {
   if (!error) return next()
   throw new ExpressError(error.details.map((el) => el.message).join(','), 400)
 }
-// module.exports = validateCampground
 
-// Path: utils/reviewSchema.js
+
 const reviewSchema = Joi.object({
   review: Joi.object({
     rating: Joi.number().required().min(1).max(5),
@@ -31,3 +29,5 @@ module.exports.validateReview = (req, res, next) => {
   if (!error) return next()
   throw new ExpressError(error.details.map((el) => el.message).join(','), 400)
 }
+
+

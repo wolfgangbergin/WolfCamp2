@@ -1,12 +1,5 @@
 const router = express.Router()
 
-const {
-  validateCampground,
-  validateReview,
-} = require('../utils/campgroundSchema')
-
-const review = require('../models/review')
-
 router.use('/deleteAll', (req, res) => {
   Campground.deleteMany({}).then(() => {
     res.redirect('/campgrounds')
@@ -92,6 +85,5 @@ router.delete(
     res.redirect('/campgrounds')
   })
 )
-
 
 module.exports = router
