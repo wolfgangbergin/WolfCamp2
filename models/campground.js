@@ -1,6 +1,4 @@
-const mongoose = require('mongoose')
-const Campground = require('../models/campground')
-const Review = require('../models/review')
+
 
 const CampgroundSchema = new mongoose.Schema({
   title: String,

@@ -18,7 +18,7 @@ app.use(express.static(__dirname + '/public'))
 
 app.use('/campgrounds', campgrounds)
 app.use('/reviews', reviews)
-app.use('/wolf', wolf)
+
 
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found🥜🥜', 404))

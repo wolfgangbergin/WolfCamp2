@@ -1,5 +1,3 @@
-const router = express.Router()
-
 router.use('/deleteAll', (req, res) => {
   Campground.deleteMany({}).then(() => {
     res.redirect('/campgrounds')

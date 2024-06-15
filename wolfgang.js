@@ -1,7 +1,13 @@
+globalThis.express = require('express')
+globalThis.router = express.Router()
+globalThis.ExpressError = require('./utils/ExpressError')
 globalThis.l = console.log
 globalThis.d = console.dir
 globalThis.Joi = require('joi')
-const ExpressError = require('./utils/ExpressError')
+globalThis.mongoose = require('mongoose')
+globalThis.Campground = require('./models/campground')
+globalThis.cities = require('./seeds/cities')
+globalThis.Schema = mongoose.Schema;
 
 
 
@@ -16,7 +22,7 @@ globalThis.validateCampground = validateCampground
 
 
 
-globalThis.express = require('express')
+
 globalThis.app = express()
 globalThis.path = require('path')
 globalThis.mongoose = require('mongoose')
@@ -29,7 +35,7 @@ globalThis.catchAsync = require('./utils/catchAsync')
 globalThis.Review = require('./models/review')
 globalThis.campgrounds = require('./routes/campgrounds')
 globalThis.reviews = require('./routes/reviews')
-globalThis.wolf = require('./routes/wolf')
+
 
 globalThis.wolfgang = {}
 
