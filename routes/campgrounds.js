@@ -4,6 +4,10 @@ router.use('/deleteAll', (req, res) => {
   })
 })
 
+router.get('/wolf', (req, res) => {
+  res.send('wolf313')
+})
+
 router.get(
   '/',
   catchAsync(async (req, res) => {
