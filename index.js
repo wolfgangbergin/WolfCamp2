@@ -1,5 +1,15 @@
 require('./wolfgang')
 const session = require('express-session')
+const sessionConfig = {
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
+}
 
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', {
@@ -21,7 +31,6 @@ app.use('/home', home)
 
 app.use('/campgrounds', campgrounds)
 app.use('/reviews', reviews)
-
 
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found🥜🥜', 404))
