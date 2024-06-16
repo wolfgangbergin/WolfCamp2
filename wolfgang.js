@@ -35,6 +35,7 @@ globalThis.catchAsync = require('./utils/catchAsync')
 globalThis.Review = require('./models/review')
 globalThis.campgrounds = require('./routes/campgrounds')
 globalThis.reviews = require('./routes/reviews')
+globalThis.home = require('./routes/home')
 
 
 globalThis.wolfgang = {}

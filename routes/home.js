@@ -1,6 +1,6 @@
 
 
-router.get('/', (req, res) => {
+router.get('/wolf', (req, res) => {
   res.send('wolf313')
 })
 

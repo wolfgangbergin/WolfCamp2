@@ -16,6 +16,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(__dirname + '/public'))
 
+app.get('/home/wolf', (req, res) => {
+  res.send('wolf313')
+})
+
 app.use('/campgrounds', campgrounds)
 app.use('/reviews', reviews)
 
