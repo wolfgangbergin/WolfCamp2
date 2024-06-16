@@ -1,5 +1,6 @@
 require('./wolfgang')
 const session = require('express-session')
+const flash = require('connect-flash')
 const sessionConfig = {
   secret: 'secret',
   resave: false,
@@ -28,6 +29,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(__dirname + '/public'))
 app.use(session(sessionConfig))
+app.use(flash())
 app.use('/home', home)
 
 app.use('/campgrounds', campgrounds)
