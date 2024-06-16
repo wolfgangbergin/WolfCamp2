@@ -11,6 +11,7 @@ const sessionConfig = {
   },
 }
 
+
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', {
     useNewUrlParser: true,
@@ -26,7 +27,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(__dirname + '/public'))
-
+app.use(session(sessionConfig))
 app.use('/home', home)
 
 app.use('/campgrounds', campgrounds)
