@@ -1,7 +1,7 @@
 
 
 router.get('/wolf', (req, res) => {
-  res.send('wolf313')
+  res.render('campgrounds/wolf')
 })
 
 module.exports = router
