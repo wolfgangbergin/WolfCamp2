@@ -10,6 +10,7 @@ router.delete(
     })
 
     await Review.findByIdAndDelete(reviewId)
+    req.flash('success', ' review deleted!!! 🎉🎉🎉🎉')
     res.redirect(`/campgrounds/${campground._id}`)
   })
 )
@@ -24,7 +25,7 @@ router.post(
     campground.reviews.push(review)
 
     await Promise.all([review.save(), campground.save()])
-
+    req.flash('success', 'created a new review!!! 🎉🎉🎉🎉')
     res.redirect(`/campgrounds/${campground._id}`)
   })
 )

@@ -42,7 +42,8 @@ router.get(
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id)
     if (!campground) {
-      throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
+      req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
+      return res.redirect('/campgrounds')
     }
     res.render('campgrounds/edit', { campground })
   })
@@ -60,6 +61,7 @@ router.put(
     if (!campground) {
       throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
     }
+    req.flash('success', ' campground updated')
     res.redirect(`/campgrounds`)
   })
 )
@@ -72,8 +74,10 @@ router.get(
     )
 
     if (!campground) {
-      throw new ExpressError('Campground not found!!! 💩💩💩💩🤪🤪🤪🤪', 515)
+      req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
+      return res.redirect('/campgrounds')
     }
+    
     res.render('campgrounds/show', { campground })
   })
 )
@@ -83,6 +87,7 @@ router.delete(
   catchAsync(async (req, res) => {
     const { id } = req.params
     await Campground.findByIdAndDelete(id)
+    req.flash('success', ' campground deleted!!! 🎉🎉🎉🎉')
     res.redirect('/campgrounds')
   })
 )
