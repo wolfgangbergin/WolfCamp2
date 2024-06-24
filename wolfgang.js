@@ -38,6 +38,11 @@ globalThis.campgrounds = require('./routes/campgrounds')
 globalThis.reviews = require('./routes/reviews')
 
 
+Object.prototype.wolfman313 = () => {
+    console.log('wolfman313')
+ 
+
+}
 
 globalThis.wolfgang = {}
 

@@ -1,6 +1,7 @@
 require('./wolfgang')
 const session = require('express-session')
 const flash = require('connect-flash')
+const { name } = require('ejs')
 const sessionConfig = {
   secret: 'secret',
   resave: false,
@@ -12,7 +13,9 @@ const sessionConfig = {
   },
 }
 
-//test
+const kimbo = {name: 'kimbo', age: 33}
+
+kimbo.wolfman313()
 
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', {
