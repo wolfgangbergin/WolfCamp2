@@ -1,3 +1,4 @@
+globalThis.isLoggedIn = require('./middleware')
 globalThis.express = require('express')
 globalThis.router = express.Router()
 globalThis.home = require('./routes/home')
@@ -57,11 +58,18 @@ globalThis.userRoutes = require('./routes/users')
 globalThis.campgroundRoutes = require('./routes/campgrounds')
 globalThis.reviewRoutes = require('./routes/reviews')
 
+
+
+
 Object.prototype.wolfman313 = () => {
     console.log('wolfman313')
  
 
 }
+
+
+
+
 
 globalThis.wolfgang = {}
 
