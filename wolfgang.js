@@ -36,8 +36,23 @@ globalThis.catchAsync = require('./utils/catchAsync')
 globalThis.Review = require('./models/review')
 globalThis.campgrounds = require('./routes/campgrounds')
 globalThis.reviews = require('./routes/reviews')
+globalThis.passport = require('passport')
+globalThis.LocalStrategy = require('passport-local')
 globalThis.passportLocalMongoose = require('passport-local-mongoose')
-
+globalThis.session = require('express-session')
+globalThis.flash = require('connect-flash')
+globalThis.User = require('./models/user')
+globalThis.sessionConfig = {
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      httpOnly: true,
+      expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+    },
+  }
+  
 
 Object.prototype.wolfman313 = () => {
     console.log('wolfman313')
