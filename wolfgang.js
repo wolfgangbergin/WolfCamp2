@@ -1,4 +1,11 @@
-globalThis.isLoggedIn = require('./middleware')
+globalThis.isLoggedIn = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+      req.flash('error', 'You must be signed in')
+      return res.redirect('/wolfman/login')
+    }
+      next()
+  }
+  
 globalThis.express = require('express')
 globalThis.router = express.Router()
 globalThis.home = require('./routes/home')
