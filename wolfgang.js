@@ -34,8 +34,8 @@ globalThis.ExpressError = require('./utils/ExpressError')
 globalThis.test3 = require('./utils/ExpressError')
 globalThis.catchAsync = require('./utils/catchAsync')
 globalThis.Review = require('./models/review')
-globalThis.campgrounds = require('./routes/campgrounds')
-globalThis.reviews = require('./routes/reviews')
+
+
 globalThis.passport = require('passport')
 globalThis.LocalStrategy = require('passport-local')
 globalThis.passportLocalMongoose = require('passport-local-mongoose')
@@ -53,6 +53,9 @@ globalThis.sessionConfig = {
     },
   }
   
+globalThis.userRoutes = require('./routes/users')
+globalThis.campgroundRoutes = require('./routes/campgrounds')
+globalThis.reviewRoutes = require('./routes/reviews')
 
 Object.prototype.wolfman313 = () => {
     console.log('wolfman313')

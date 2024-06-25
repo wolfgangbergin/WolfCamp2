@@ -1,0 +1,14 @@
+<h1>register</h1>
+<form action="/users/register" method="POST">
+  <input type="text" name="username" placeholder="username">
+  <input type="password" name="password" placeholder="password">
+  <button type="submit">Register</button>
+</form>
+```
+
+### 3. Create a new user
+
+```javascript
+// routes/users.js
+const express = require('express');
+const router = express.Router();

@@ -34,8 +34,8 @@ app.use((req, res, next) => {
 
 app.use('/home', home)
 
-app.use('/campgrounds', campgrounds)
-app.use('/reviews', reviews)
+app.use('/campgrounds', campgroundRoutes)
+app.use('/reviews', reviewRoutes)
 
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found🥜🥜', 404))
