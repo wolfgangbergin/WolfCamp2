@@ -1,10 +1,22 @@
 globalThis.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
+    req.session.returnTo = req.originalUrl
+    l(req.session.returnTo)
       req.flash('error', 'You must be signed in')
       return res.redirect('/wolfman/login')
     }
       next()
   }
+
+
+
+
+  globalThis.storeReturnTo = (req, res, next) => {
+    if (req.session.returnTo) {
+        res.locals.returnTo = req.session.returnTo;
+    }
+    next();
+}
   
 globalThis.express = require('express')
 globalThis.router = express.Router()
@@ -68,11 +80,6 @@ globalThis.reviewRoutes = require('./routes/reviews')
 
 
 
-Object.prototype.wolfman313 = () => {
-    console.log('wolfman313')
- 
-
-}
 
 
 

@@ -16,7 +16,7 @@ router.post(
       })
     } catch (e) {
       req.flash('error', e.message)
-      //res.redirect('/register')
+    
       res.redirect('/wolfman/register')
     }
   })
@@ -28,6 +28,7 @@ router.get('/login', (req, res) => {
 
 router.post(
   '/login',
+  storeReturnTo,
   passport.authenticate('local', {
     failureFlash: true,
     failureRedirect: '/wolfman/login',
