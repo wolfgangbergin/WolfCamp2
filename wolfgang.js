@@ -9,6 +9,7 @@ globalThis.isLoggedIn = (req, res, next) => {
 }
 
 globalThis.storeReturnTo = (req, res, next) => {
+  l(req.session.returnTo)
   if (req.session.returnTo) {
     res.locals.returnTo = req.session.returnTo
   }
