@@ -20,7 +20,7 @@ CampgroundSchema.post('findOneAndDelete', async function (data) {
 
     data.reviews.forEach(async(ele)=>{
         const temp1 = await Review.findByIdAndDelete(ele._id)
-        l(temp1)
+        
     })
    
   }

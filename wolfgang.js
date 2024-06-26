@@ -1,23 +1,20 @@
 globalThis.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
     req.session.returnTo = req.originalUrl
-    l(req.session.returnTo)
-      req.flash('error', 'You must be signed in')
-      return res.redirect('/wolfman/login')
-    }
-      next()
+
+    req.flash('error', 'You must be signed in')
+    return res.redirect('/wolfman/login')
   }
-
-
-
-
-  globalThis.storeReturnTo = (req, res, next) => {
-    if (req.session.returnTo) {
-        res.locals.returnTo = req.session.returnTo;
-    }
-    next();
+  next()
 }
-  
+
+globalThis.storeReturnTo = (req, res, next) => {
+  if (req.session.returnTo) {
+    res.locals.returnTo = req.session.returnTo
+  }
+  next()
+}
+
 globalThis.express = require('express')
 globalThis.router = express.Router()
 globalThis.home = require('./routes/home')
@@ -28,20 +25,15 @@ globalThis.Joi = require('joi')
 globalThis.mongoose = require('mongoose')
 globalThis.Campground = require('./models/campground')
 globalThis.cities = require('./seeds/cities')
-globalThis.Schema = mongoose.Schema;
+globalThis.Schema = mongoose.Schema
 
-
-
-
-
-
-
-const { validateReview, validateCampground } = require('./utils/campgroundSchema')
+const {
+  validateReview,
+  validateCampground,
+} = require('./utils/campgroundSchema')
 
 globalThis.validateRevieww = validateReview
 globalThis.validateCampground = validateCampground
-
-
 
 globalThis.home = require('./routes/home')
 globalThis.app = express()
@@ -55,7 +47,6 @@ globalThis.test3 = require('./utils/ExpressError')
 globalThis.catchAsync = require('./utils/catchAsync')
 globalThis.Review = require('./models/review')
 
-
 globalThis.passport = require('passport')
 globalThis.LocalStrategy = require('passport-local')
 globalThis.passportLocalMongoose = require('passport-local-mongoose')
@@ -63,29 +54,20 @@ globalThis.session = require('express-session')
 globalThis.flash = require('connect-flash')
 globalThis.User = require('./models/user')
 globalThis.sessionConfig = {
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      httpOnly: true,
-      expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-    },
-  }
-  
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
+}
+
 globalThis.userRoutes = require('./routes/users')
 globalThis.campgroundRoutes = require('./routes/campgrounds')
 globalThis.reviewRoutes = require('./routes/reviews')
 
-
-
-
-
-
-
-
-
 globalThis.wolfgang = {}
-
 
 exports

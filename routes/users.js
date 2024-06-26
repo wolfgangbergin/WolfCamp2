@@ -16,7 +16,7 @@ router.post(
       })
     } catch (e) {
       req.flash('error', e.message)
-    
+
       res.redirect('/wolfman/register')
     }
   })
@@ -35,20 +35,20 @@ router.post(
   }),
   (req, res) => {
     req.flash('success', 'Welcome back!')
-    const redirectUrl = req.session.returnTo || '/campgrounds'
-    delete req.session.returnTo
+
+    const redirectUrl = res.locals.returnTo || '/campgrounds'
     res.redirect(redirectUrl)
   }
 )
 
 router.get('/logout', (req, res, next) => {
-    req.logout(function (err) {
-        if (err) {
-            return next(err);
-        }
-        req.flash('success', 'Goodbye!');
-        res.redirect('/campgrounds');
-    });
-}); 
+  req.logout(function (err) {
+    if (err) {
+      return next(err)
+    }
+    req.flash('success', 'Goodbye!')
+    res.redirect('/campgrounds')
+  })
+})
 
 module.exports = router
