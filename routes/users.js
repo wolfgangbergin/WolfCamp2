@@ -28,20 +28,16 @@ router.get('/login', (req, res) => {
 
 router.post(
   '/login',
-  storeReturnTo,
+  // storeReturnTo,
   passport.authenticate('local', {
     failureFlash: true,
     failureRedirect: '/wolfman/login',
   }),
   (req, res) => {
     req.flash('success', 'Welcome back!')
-    l(req.session.returnTo)
-
-
-    
 
     const redirectUrl = res.locals.returnTo || '/campgrounds'
-    res.redirect(redirectUrl)
+    res.redirect(wolfgang.returnTo)
   }
 )
 
