@@ -1,3 +1,4 @@
+globalThis.catchAsync = require('./utils/catchAsync')
 globalThis.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
     req.session.returnTo = req.originalUrl
@@ -5,10 +6,11 @@ globalThis.isLoggedIn = (req, res, next) => {
     wolfgang.returnTo = req.originalUrl
 
     req.flash('error', 'You must be signed in')
-    return res.redirect('/wolfman/login')
+    return res.redirect('/user/login')
   }
   next()
 }
+globalThis.usersController = require('./controllers/usersController')
 
 // globalThis.storeReturnTo = (req, res, next) => {
 
@@ -47,7 +49,6 @@ globalThis.methodOverride = require('method-override')
 globalThis.ejsMate = require('ejs-mate')
 globalThis.ExpressError = require('./utils/ExpressError')
 globalThis.test3 = require('./utils/ExpressError')
-globalThis.catchAsync = require('./utils/catchAsync')
 globalThis.Review = require('./models/review')
 
 globalThis.passport = require('passport')

@@ -35,7 +35,7 @@ app.use((req, res, next) => {
 })
 
 
-app.use('/wolfman', userRoutes)
+app.use('/user', userRoutes)
 app.use('/home', home)
 
 app.use('/campgrounds', campgroundRoutes)
