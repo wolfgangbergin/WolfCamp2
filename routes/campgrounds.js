@@ -74,9 +74,11 @@ router.put(
 router.get(
   '/:id',
   catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id).populate(
+    const campground = await Campground.findById(req.params.id)
+    .populate(
       'reviews'
-    ).populate('author')
+    )
+    .populate('author')
   
 
     if (!campground) {
