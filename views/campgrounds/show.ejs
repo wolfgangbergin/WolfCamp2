@@ -16,6 +16,7 @@
         <li class="list-group-item">$<%= campground.price %>.00</li>
       </ul>
   
+      <% if(campground.author.equals(currentUser?._id)) { %>
 
       <div class="card-body">
         <a href="/campgrounds" class="card-link btn btn-info">Go Back</a>
@@ -29,6 +30,7 @@
         method="POST"
       >
         <button class="btn btn-danger">Delete</button>
+        <% } %>
       </form>
     </div>
     
