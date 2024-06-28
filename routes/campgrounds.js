@@ -26,7 +26,7 @@ router.post(
   catchAsync(async (req, res, next) => {
     const campground = new Campground(req.body.campground)
     campground.author = req.user._id
-    
+
 
     await campground.save()
     req.flash('success', 'Successfully made a new campground!!! 🎉🎉🎉🎉')
@@ -41,6 +41,7 @@ router.get('/new',  isLoggedIn, (req, res) => {
 router.get(
   '/:id/edit',
   isLoggedIn, 
+  isOwner,
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id)
     if (!campground) {
@@ -55,6 +56,7 @@ router.put(
   '/:id',
   isLoggedIn, 
   validateCampground,
+  isOwner,
   catchAsync(async (req, res) => {
     const campground = await Campground.findByIdAndUpdate(
       req.params.id,
@@ -75,7 +77,7 @@ router.get(
     const campground = await Campground.findById(req.params.id).populate(
       'reviews'
     ).populate('author')
-    l(campground)
+  
 
     if (!campground) {
       req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
@@ -89,6 +91,7 @@ router.get(
 router.delete(
   '/:id',
   isLoggedIn, 
+  isOwner,
   catchAsync(async (req, res) => {
     const { id } = req.params
     await Campground.findByIdAndDelete(id)

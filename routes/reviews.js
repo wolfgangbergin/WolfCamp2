@@ -18,10 +18,12 @@ router.delete(
 router.post(
   '/:id',
   validateRevieww,
+  isLoggedIn, 
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id)
     const review = new Review(req.body.review)
-
+l(req.body.review)
+l(req.user._id)
     campground.reviews.push(review)
 
     await Promise.all([review.save(), campground.save()])
