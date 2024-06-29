@@ -26,23 +26,11 @@ router.post(
     }
     const campground = await Campground.findById(req.params.id)
     const review = new Review(newObject)
-    //l(req.body.review)
-    // l(req.user._id)
+    campground.reviews.push(review)
 
-
-     //l(review._id)
-
-    
-    
-    campground.reviews.push(await review.populate('author'))
-    
     await Promise.all([review.save(), campground.save()])
     req.flash('success', 'created a new review!!! 🎉🎉🎉🎉')
     res.redirect(`/campgrounds/${campground._id}`)
-
-    const temp1 = await Review.findById(review._id).populate('author')
-   // l(temp1.author.username)
-    l(req.user.username)
   })
 )
 
