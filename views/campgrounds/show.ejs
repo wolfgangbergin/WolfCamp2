@@ -42,7 +42,10 @@
 
 
     </div>
+  
     <div class="col-6 ">
+      <%if(currentUser?._id) {%>
+        
 
       <h2>Submit a Reviews</h2>
 
@@ -59,6 +62,7 @@
             Please provide a review.
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
+          <%} %>
 
       </form>
       <% for(let review of campground.reviews) { %>
@@ -84,4 +88,5 @@
             
           </div>
           <%} %>
+          
         </div>

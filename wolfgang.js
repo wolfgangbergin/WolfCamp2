@@ -1,4 +1,5 @@
 globalThis.catchAsync = require('./utils/catchAsync')
+
 globalThis.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
     req.session.returnTo = req.originalUrl
@@ -25,6 +26,22 @@ globalThis.isOwner = catchAsync(async(req, res, next) => {
 )
 globalThis.usersController = require('./controllers/usersController')
 
+
+
+
+globalThis.isReviewOwner = catchAsync(async(req, res, next) => {
+  const {reviewId } = req.params
+  const review = await Review.findById(reviewId)
+l(req.user?._id)
+l(review.author)
+  if (!review.author.equals(req.user?._id)) {
+    req.flash('error', 'You do not have permission to do that')
+    return res.redirect(`/user/login`)
+  }
+  next()
+}
+)
+globalThis.usersController = require('./controllers/usersController')
 // globalThis.storeReturnTo = (req, res, next) => {
 
 //   if (req.session.returnTo) {

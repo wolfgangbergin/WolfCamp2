@@ -1,5 +1,7 @@
 router.delete(
   '/:id/:reviewId',
+  isLoggedIn,
+  isReviewOwner,
   catchAsync(async (req, res) => {
     const { id, reviewId } = req.params
 
