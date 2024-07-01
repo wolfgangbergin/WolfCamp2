@@ -21,12 +21,11 @@ router.get(
 
 router.post(
   '/',
-  isLoggedIn, 
+  isLoggedIn,
   validateCampground,
   catchAsync(async (req, res, next) => {
     const campground = new Campground(req.body.campground)
     campground.author = req.user._id
-
 
     await campground.save()
     req.flash('success', 'Successfully made a new campground!!! 🎉🎉🎉🎉')
@@ -34,13 +33,13 @@ router.post(
   })
 )
 
-router.get('/new',  isLoggedIn, (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
   res.render('campgrounds/new')
 })
 
 router.get(
   '/:id/edit',
-  isLoggedIn, 
+  isLoggedIn,
   isOwner,
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id)
@@ -54,7 +53,7 @@ router.get(
 
 router.put(
   '/:id',
-  isLoggedIn, 
+  isLoggedIn,
   validateCampground,
   isOwner,
   catchAsync(async (req, res) => {
@@ -75,11 +74,15 @@ router.get(
   '/:id',
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id)
-    .populate(
-      'reviews'
-    )
-    .populate('author')
-  
+      .populate({
+        path: 'reviews',
+        populate: {
+          path: 'author',
+        },
+      })
+      .populate('author')
+
+      l(campground?.reviews[0]?.author?.username)
 
     if (!campground) {
       req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
@@ -92,7 +95,7 @@ router.get(
 
 router.delete(
   '/:id',
-  isLoggedIn, 
+  isLoggedIn,
   isOwner,
   catchAsync(async (req, res) => {
     const { id } = req.params

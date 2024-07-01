@@ -32,8 +32,7 @@ globalThis.usersController = require('./controllers/usersController')
 globalThis.isReviewOwner = catchAsync(async(req, res, next) => {
   const {reviewId } = req.params
   const review = await Review.findById(reviewId)
-l(req.user?._id)
-l(review.author)
+
   if (!review.author.equals(req.user?._id)) {
     req.flash('error', 'You do not have permission to do that')
     return res.redirect(`/user/login`)

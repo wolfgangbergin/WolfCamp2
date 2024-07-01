@@ -75,7 +75,7 @@
             <p class="card-text">Review: <%= review.body %>
             </p>
 
-            <li class="list-group-item">Submitted by <%= review.authorName %>
+            <li class="list-group-item">Submitted by <%=campground?.reviews[0]?.author?.username %>
             </li>
 
           </div>
