@@ -6,7 +6,6 @@ const deleteAll = async (req, res) => {
 
 const index = async (req, res) => {
   const campgrounds = await Campground.find({})
-l('test919')
   if (!campgrounds) {
     throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
   }
@@ -21,6 +20,8 @@ const newCampgroundPost = async (req, res, next) => {
   campground.author = req.user._id
 
   await campground.save()
+  l('test919')
+
   req.flash('success', 'Successfully made a new campground!!! 🎉🎉🎉🎉')
   res.redirect(`/campgrounds`)
 }
