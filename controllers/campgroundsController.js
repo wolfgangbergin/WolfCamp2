@@ -15,6 +15,10 @@ const index = async (req, res) => {
   res.render('campgrounds/index', { campgrounds })
 }
 
+const newCampgroundGet = (req, res) => {
+  res.render('campgrounds/new')
+}
+
 const newCampgroundPost = async (req, res, next) => {
   const campground = new Campground(req.body.campground)
   campground.author = req.user._id
@@ -49,7 +53,7 @@ const updateCampgroundPut = async (req, res) => {
   req.flash('success', ' campground updated')
   res.redirect(`/campgrounds`)
 }
-
+ 
 const updateCampgroungGet = async (req, res) => {
   const campground = await Campground.findById(req.params.id)
     .populate({
@@ -78,6 +82,7 @@ const deleteCampground = async (req, res) => {
 module.exports = {
   deleteAll,
   index,
+  newCampgroundGet,
   newCampgroundPost,
   campgroundShowGet,
   updateCampgroundPut,
