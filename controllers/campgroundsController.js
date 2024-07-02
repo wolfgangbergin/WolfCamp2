@@ -5,7 +5,6 @@ const deleteAll = async (req, res) => {
   
 }
 
-
 const index = async (req, res) => {
   const campgrounds = await Campground.find({})
 
