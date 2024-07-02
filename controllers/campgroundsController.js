@@ -1,5 +1,4 @@
 const deleteAll = async (req, res) => {
-  l('deleteAll')
   await Campground.deleteMany({})
   res.redirect('/campgrounds')
   
@@ -7,7 +6,7 @@ const deleteAll = async (req, res) => {
 
 const index = async (req, res) => {
   const campgrounds = await Campground.find({})
-
+l('test919')
   if (!campgrounds) {
     throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
   }

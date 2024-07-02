@@ -1,6 +1,5 @@
 //const { deleteAll } = require("../controllers/campgroundsController")
 
-
 router.get('/deleteAll', campgroundsController.deleteAll)
 
 router.get('/', catchAsync(campgroundsController.index))
@@ -16,7 +15,12 @@ router.get('/new', isLoggedIn, (req, res) => {
   res.render('campgrounds/new')
 })
 
-router.get('/:id/edit', isLoggedIn, isOwner, catchAsync(campgroundsController.updateCampgroungGet))
+router.get(
+  '/:id/edit',
+  isLoggedIn,
+  isOwner,
+  catchAsync(campgroundsController.updateCampgroungGet)
+)
 
 router.put(
   '/:id',
