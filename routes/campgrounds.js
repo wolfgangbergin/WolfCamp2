@@ -1,9 +1,6 @@
 router.use('/deleteAll', campgroundsController.deleteAll)
 
-router.get(
-  '/',
-  catchAsync(campgroundsController.indexGet)
-)
+router.get('/', catchAsync(campgroundsController.indexGet))
 
 router.post(
   '/',
@@ -21,8 +18,6 @@ router.get(
   catchAsync(campgroundsController.editCmapgroundGet)
 )
 
-
-
 router.put(
   '/:id',
   isLoggedIn,
@@ -33,25 +28,7 @@ router.put(
 
 router.get(
   '/:id',
-  catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id)
-      .populate({
-        path: 'reviews',
-        populate: {
-          path: 'author',
-        },
-      })
-      .populate('author')
-
-     
-
-    if (!campground) {
-      req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
-      return res.redirect('/campgrounds')
-    }
-
-    res.render('campgrounds/show', { campground })
-  })
+  catchAsync(campgroundsController.showCampgroundGet)
 )
 
 router.delete(

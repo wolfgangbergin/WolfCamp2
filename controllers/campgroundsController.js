@@ -52,7 +52,8 @@ const editCampgroundPut = async (req, res) => {
   res.redirect(`/campgrounds`)
 }
 
-const updateCampgroungGet = async (req, res) => {
+///////////////////////////////////////////////
+const showCampgroundGet = async (req, res) => {
   const campground = await Campground.findById(req.params.id)
     .populate({
       path: 'reviews',
@@ -66,9 +67,11 @@ const updateCampgroungGet = async (req, res) => {
     req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
     return res.redirect('/campgrounds')
   }
-
-  res.render('campgrounds/edit', { campground })
+l('test313')
+  res.render('campgrounds/show', { campground })
 }
+
+///////////////////////////////////////////////
 
 const deleteCampground = async (req, res) => {
   const { id } = req.params
@@ -76,6 +79,9 @@ const deleteCampground = async (req, res) => {
   req.flash('success', 'Campground deleted')
   res.redirect('/campgrounds')
 }
+
+
+///////////////////////////////////////////////
 module.exports = {
   deleteAll,
   indexGet,
@@ -83,6 +89,7 @@ module.exports = {
   newCampgroundGet,
   editCmapgroundGet,
   editCampgroundPut,
-  updateCampgroungGet,
+  showCampgroundGet,
+
   deleteCampground,
 }
