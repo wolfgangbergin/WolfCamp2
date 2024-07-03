@@ -52,7 +52,6 @@ const editCampgroundPut = async (req, res) => {
   res.redirect(`/campgrounds`)
 }
 
-///////////////////////////////////////////////
 const showCampgroundGet = async (req, res) => {
   const campground = await Campground.findById(req.params.id)
     .populate({
@@ -67,21 +66,17 @@ const showCampgroundGet = async (req, res) => {
     req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
     return res.redirect('/campgrounds')
   }
-l('test313')
+  l('test313')
   res.render('campgrounds/show', { campground })
 }
-
-///////////////////////////////////////////////
 
 const deleteCampground = async (req, res) => {
   const { id } = req.params
   await Campground.findByIdAndDelete(id)
-  req.flash('success', 'Campground deleted')
+  req.flash('success', ' campground deleted!!! 🎉🎉🎉🎉')
   res.redirect('/campgrounds')
 }
 
-
-///////////////////////////////////////////////
 module.exports = {
   deleteAll,
   indexGet,

@@ -26,21 +26,13 @@ router.put(
   catchAsync(campgroundsController.editCampgroundPut)
 )
 
-router.get(
-  '/:id',
-  catchAsync(campgroundsController.showCampgroundGet)
-)
+router.get('/:id', catchAsync(campgroundsController.showCampgroundGet))
 
 router.delete(
   '/:id',
   isLoggedIn,
   isOwner,
-  catchAsync(async (req, res) => {
-    const { id } = req.params
-    await Campground.findByIdAndDelete(id)
-    req.flash('success', ' campground deleted!!! 🎉🎉🎉🎉')
-    res.redirect('/campgrounds')
-  })
+  catchAsync(campgroundsController.deleteCampground)
 )
 
 module.exports = router
