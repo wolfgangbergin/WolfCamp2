@@ -28,11 +28,15 @@ router.put(
 
 router.get('/:id', catchAsync(campgroundsController.showCampgroundGet))
 
+
+
+
 router.delete(
   '/:id',
   isLoggedIn,
   isOwner,
   catchAsync(campgroundsController.deleteCampground)
 )
+
 
 module.exports = router

@@ -28,7 +28,7 @@ const newCampgroundGet = (req, res) => {
   res.render('campgrounds/new')
 }
 
-const editCmapgroundGet = async (req, res) => {
+const editCampgroundGet = async (req, res) => {
   const campground = await Campground.findById(req.params.id)
   if (!campground) {
     req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
@@ -82,7 +82,7 @@ module.exports = {
   indexGet,
   newCampgroundPost,
   newCampgroundGet,
-  editCmapgroundGet,
+  editCampgroundGet,
   editCampgroundPut,
   showCampgroundGet,
 
