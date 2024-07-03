@@ -28,18 +28,7 @@ router.put(
   isLoggedIn,
   validateCampground,
   isOwner,
-  catchAsync(async (req, res) => {
-    const campground = await Campground.findByIdAndUpdate(
-      req.params.id,
-      { ...req.body.campground },
-      { runValidators: true, new: true }
-    )
-    if (!campground) {
-      throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
-    }
-    req.flash('success', ' campground updated')
-    res.redirect(`/campgrounds`)
-  })
+  catchAsync(campgroundsController.editCampgroundPut)
 )
 
 router.get(
