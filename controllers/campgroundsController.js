@@ -4,7 +4,7 @@ const deleteAll = async (req, res) => {
   
 }
 
-const index = async (req, res) => {
+const indexGet = async (req, res) => {
   const campgrounds = await Campground.find({})
   if (!campgrounds) {
     throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
@@ -81,7 +81,7 @@ const deleteCampground = async (req, res) => {
 }
 module.exports = {
   deleteAll,
-  index,
+  indexGet,
   newCampgroundGet,
   newCampgroundPost,
   campgroundShowGet,

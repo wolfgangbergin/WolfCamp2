@@ -2,17 +2,7 @@ router.use('/deleteAll', campgroundsController.deleteAll)
 
 router.get(
   '/',
-  catchAsync(async (req, res) => {
-    const campgrounds = await Campground.find({})
-
-    if (!campgrounds) {
-      throw new ExpressError('BAD Wolfie!!! 💩💩💩💩', 515)
-    }
-
-    campgrounds.reverse()
-
-    res.render('campgrounds/index', { campgrounds })
-  })
+  catchAsync(campgroundsController.indexGet)
 )
 
 router.post(
