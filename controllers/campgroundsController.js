@@ -28,14 +28,15 @@ const newCampgroundGet = (req, res) => {
   res.render('campgrounds/new')
 }
 
-const campgroundShowGet = async (req, res) => {
+
+const editCmapgroundGet = async (req, res) => {
   const campground = await Campground.findById(req.params.id)
   if (!campground) {
     req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
     return res.redirect('/campgrounds')
   }
-
-  res.render('campgrounds/show', { campground })
+  l('test313')
+  res.render('campgrounds/edit', { campground })
 }
 
 const updateCampgroundPut = async (req, res) => {
@@ -78,9 +79,9 @@ const deleteCampground = async (req, res) => {
 module.exports = {
   deleteAll,
   indexGet,
-  newCampgroundGet,
   newCampgroundPost,
-  campgroundShowGet,
+  newCampgroundGet,
+ editCmapgroundGet,
   updateCampgroundPut,
   updateCampgroungGet,
   deleteCampground,

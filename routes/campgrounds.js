@@ -18,14 +18,7 @@ router.get(
   '/:id/edit',
   isLoggedIn,
   isOwner,
-  catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id)
-    if (!campground) {
-      req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
-      return res.redirect('/campgrounds')
-    }
-    res.render('campgrounds/edit', { campground })
-  })
+  catchAsync(campgroundsController.editCmapgroundGet)
 )
 
 
@@ -61,7 +54,7 @@ router.get(
       })
       .populate('author')
 
-      l(campground?.reviews[0]?.author?.username)
+     
 
     if (!campground) {
       req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
