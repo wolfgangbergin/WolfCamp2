@@ -1,7 +1,6 @@
 const deleteAll = async (req, res) => {
   await Campground.deleteMany({})
   res.redirect('/campgrounds')
-  
 }
 
 const indexGet = async (req, res) => {
@@ -15,19 +14,20 @@ const indexGet = async (req, res) => {
   res.render('campgrounds/index', { campgrounds })
 }
 
-const newCampgroundGet = (req, res) => {
-  res.render('campgrounds/new')
-}
+
 
 const newCampgroundPost = async (req, res, next) => {
   const campground = new Campground(req.body.campground)
   campground.author = req.user._id
-
+  
   await campground.save()
-  l('test919')
-
+  
   req.flash('success', 'Successfully made a new campground!!! 🎉🎉🎉🎉')
   res.redirect(`/campgrounds`)
+}
+
+const newCampgroundGet = (req, res) => {
+  res.render('campgrounds/new')
 }
 
 const campgroundShowGet = async (req, res) => {
@@ -36,7 +36,6 @@ const campgroundShowGet = async (req, res) => {
     req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
     return res.redirect('/campgrounds')
   }
-  l('test919')
 
   res.render('campgrounds/show', { campground })
 }
@@ -53,7 +52,7 @@ const updateCampgroundPut = async (req, res) => {
   req.flash('success', ' campground updated')
   res.redirect(`/campgrounds`)
 }
- 
+
 const updateCampgroungGet = async (req, res) => {
   const campground = await Campground.findById(req.params.id)
     .populate({
@@ -68,7 +67,6 @@ const updateCampgroungGet = async (req, res) => {
     req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
     return res.redirect('/campgrounds')
   }
-  l('test919')
 
   res.render('campgrounds/edit', { campground })
 }
