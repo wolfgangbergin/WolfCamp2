@@ -1,8 +1,4 @@
-router.use('/deleteAll', (req, res) => {
-  Campground.deleteMany({}).then(() => {
-    res.redirect('/campgrounds')
-  })
-})
+router.use('/deleteAll', campgroundsController.deleteAll)
 
 router.get(
   '/',
