@@ -28,9 +28,6 @@ router.put(
 
 router.get('/:id', catchAsync(campgroundsController.showCampgroundGet))
 
-
-
-
 router.delete(
   '/:id',
   isLoggedIn,
@@ -38,6 +35,4 @@ router.delete(
   catchAsync(campgroundsController.deleteCampground)
 )
 
-
-//313
 module.exports = router
