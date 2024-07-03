@@ -12,9 +12,7 @@ router.post(
   catchAsync(campgroundsController.newCampgroundPost)
 )
 
-router.get('/new', isLoggedIn, (req, res) => {
-  res.render('campgrounds/new')
-})
+router.get('/new', isLoggedIn, campgroundsController.newCampgroundGet)
 
 router.get(
   '/:id/edit',
