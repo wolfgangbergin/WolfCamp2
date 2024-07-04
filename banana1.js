@@ -4,6 +4,6 @@ const editCmapgroundGet = async (req, res) => {
       req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
       return res.redirect('/campgrounds')
     }
-    l('test313')
+   
     res.render('campgrounds/edit', { campground })
   }

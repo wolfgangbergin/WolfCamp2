@@ -19,6 +19,8 @@ const postReview = async (req, res) => {
       author: req.user._id,
       authorName: req.user.username,
     }
+
+    //l(newObject.authorName)
     const campground = await Campground.findById(req.params.id)
     const review = new Review(newObject)
     campground.reviews.push(review)
