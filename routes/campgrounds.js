@@ -15,7 +15,7 @@ router.get(
   '/:id/edit',
   isLoggedIn,
   isOwner,
-  catchAsync(campgroundsController.editCmapgroundGet)
+  catchAsync(campgroundsController.editCampgroundGet)
 )
 
 router.put(
