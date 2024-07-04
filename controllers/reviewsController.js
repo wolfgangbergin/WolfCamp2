@@ -1,3 +1,17 @@
+
+
+
+const deleteReview = async (req, res) => {
+    const { id, reviewId } = req.params
+    await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } })
+    await Review.findByIdAndDelete(reviewId)
+    req.flash('success', 'deleted a review!!! 🎉🎉🎉🎉')
+    res.redirect(`/campgrounds/${id}`)
+  }
+
+
+
+
 const postReview = async (req, res) => {
     const newObject = {
       rating: req.body.review.rating,
@@ -21,4 +35,5 @@ const postReview = async (req, res) => {
 
   module.exports = {
     postReview,
+    deleteReview,
     }
