@@ -42,6 +42,7 @@ globalThis.isReviewOwner = catchAsync(async(req, res, next) => {
 )
 globalThis.usersController = require('./controllers/usersController')
 globalThis.campgroundsController = require('./controllers/campgroundsController')
+globalThis.reviewsController = require('./controllers/reviewsController')
 
 // globalThis.storeReturnTo = (req, res, next) => {
 
