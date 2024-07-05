@@ -27,7 +27,9 @@ const user_login_post = (req, res) => {
   req.flash('success', 'Welcome back!')
 
   const redirectUrl = res.locals.returnTo || '/campgrounds'
-  res.redirect(wolfgang.returnTo)
+
+//   res.redirect(wolfgang.returnTo)
+  res.redirect(redirectUrl)
 }
 
 const user_logout = (req, res, next) => {
