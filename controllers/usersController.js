@@ -50,3 +50,4 @@ module.exports = {
   user_register_post,
   user_login_post,
 }
+

@@ -1,6 +1,5 @@
 require('./wolfgang')
 
-
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', {
     useNewUrlParser: true,
@@ -25,13 +24,17 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) => {
- res.locals.returnTo = req.session.returnTo
+  l(`${req.method}      ${req.url}`)
+  next()
+})
+
+app.use((req, res, next) => {
+  res.locals.returnTo = req.session.returnTo
   res.locals.currentUser = req.user
   res.locals.success = req.flash('success')
   res.locals.error = req.flash('error')
   next()
 })
-
 
 app.use('/user', userRoutes)
 app.use('/home', home)

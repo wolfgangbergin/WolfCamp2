@@ -62,7 +62,6 @@ const showCampgroundGet = async (req, res) => {
     })
     .populate('author')
 
-    l(campground?.reviews[0]?.author?.username)
   if (!campground) {
     req.flash('error', 'Cannot find that campground!!! 💩💩💩💩')
     return res.redirect('/campgrounds')
