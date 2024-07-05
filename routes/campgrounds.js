@@ -1,16 +1,3 @@
-router.use('/deleteAll', campgroundsController.deleteAll)
-
-router.get('/', catchAsync(campgroundsController.indexGet))
-
-router.post(
-  '/',
-  isLoggedIn,
-  validateCampground,
-  catchAsync(campgroundsController.newCampgroundPost)
-)
-
-router.get('/new', isLoggedIn, campgroundsController.newCampgroundGet)
-
 router.get(
   '/:id/edit',
   isLoggedIn,
@@ -18,21 +5,33 @@ router.get(
   catchAsync(campgroundsController.editCampgroundGet)
 )
 
-router.put(
-  '/:id',
-  isLoggedIn,
-  validateCampground,
-  isOwner,
-  catchAsync(campgroundsController.editCampgroundPut)
-)
+router.use('/deleteAll', campgroundsController.deleteAll)
 
-router.get('/:id', catchAsync(campgroundsController.showCampgroundGet))
+router.get('/new', isLoggedIn, campgroundsController.newCampgroundGet)
 
-router.delete(
-  '/:id',
-  isLoggedIn,
-  isOwner,
-  catchAsync(campgroundsController.deleteCampground)
-)
+
+router
+  .route('/:id')
+  .get(catchAsync(campgroundsController.showCampgroundGet))
+  .put(
+    isLoggedIn,
+    validateCampground,
+    isOwner,
+    catchAsync(campgroundsController.editCampgroundPut)
+  )
+  .delete(
+    isLoggedIn,
+    isOwner,
+    catchAsync(campgroundsController.deleteCampground)
+  )
+
+router
+  .route('/')
+  .get(catchAsync(campgroundsController.indexGet))
+  .post(
+    isLoggedIn,
+    validateCampground,
+    catchAsync(campgroundsController.newCampgroundPost)
+  )
 
 module.exports = router
