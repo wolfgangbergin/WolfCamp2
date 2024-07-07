@@ -50,10 +50,21 @@
       <h2>Submit a Reviews</h2>
 
       <form action="/reviews/<%=campground._id %>" class="form-group validated-form" method="POST" novalidate>
-        <div>
-          <label for="rating">Rating</label>
-          <input type="number" class="form-control" id="rating" name="review[rating]" min="1" max="5" value="1" />
-        </div>
+       
+        <fieldset class="starability-basic">
+          <legend>Rating:</legend>
+          <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" aria-label="No rating." />
+          <input type="radio" id="one-star" name="review[rating]" value="1" />
+          <label for="one-star" title="Terrible">1 star</label>
+          <input type="radio" id="two-stars" name="review[rating]" value="2" />
+          <label for="two-stars" title="Not good">2 stars</label>
+          <input type="radio" id="three-stars" name="review[rating]" value="3" />
+          <label for="three-stars" title="Average">3 stars</label>
+          <input type="radio" id="four-stars" name="review[rating]" value="4" />
+          <label for="four-stars" title="Very good">4 stars</label>
+          <input type="radio" id="five-stars" name="review[rating]" value="5" />
+          <label for="five-stars" title="Amazing">5 stars</label>
+        </fieldset>
         <div class="form-group">
           <label for="review">Review</label>
           <textarea class="form-control" id="body" name="review[body]" rows="3" required>A great place for a house
