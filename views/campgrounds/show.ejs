@@ -53,8 +53,8 @@
        
         <fieldset class="starability-basic">
           <legend>Rating:</legend>
-          <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" aria-label="No rating." />
-          <input type="radio" id="one-star" name="review[rating]" value="1" checked/>
+          <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" aria-label="No rating." required />
+          <input type="radio" id="one-star" name="review[rating]" value="1" />
           <label for="one-star" title="Terrible">1 star</label>
           <input type="radio" id="two-stars" name="review[rating]" value="2" />
           <label for="two-stars" title="Not good">2 stars</label>
@@ -64,6 +64,9 @@
           <label for="four-stars" title="Very good">4 stars</label>
           <input type="radio" id="five-stars" name="review[rating]" value="5" />
           <label for="five-stars" title="Amazing">5 stars</label>
+          <div class="invalid-feedback">
+            Please provide 1 to 5.
+          </div>
         </fieldset>
         <div class="form-group">
           <label for="review">Review</label>
