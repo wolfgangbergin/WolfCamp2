@@ -1,5 +1,8 @@
 globalThis.catchAsync = require('./utils/catchAsync')
 
+globalThis.multer = require('multer')
+globalThis.upload = multer({ dest: 'uploads/' })
+
 globalThis.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
     req.session.returnTo = req.originalUrl
@@ -103,6 +106,8 @@ globalThis.sessionConfig = {
 globalThis.userRoutes = require('./routes/users')
 globalThis.campgroundRoutes = require('./routes/campgrounds')
 globalThis.reviewRoutes = require('./routes/reviews')
+
+
 
 globalThis.wolfgang = {}
 

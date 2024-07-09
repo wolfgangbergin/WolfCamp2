@@ -28,10 +28,11 @@ router
 router
   .route('/')
   .get(catchAsync(campgroundsController.indexGet))
-  .post(
-    isLoggedIn,
-    validateCampground,
-    catchAsync(campgroundsController.newCampgroundPost)
-  )
+  // .post(
+  //   isLoggedIn,
+  //   validateCampground,
+  //   catchAsync(campgroundsController.newCampgroundPost)
+  // )
+  .post(upload.array("image"), (req, res) => {console.log(req.body, req.files); res.send('It worked')})
 
 module.exports = router
