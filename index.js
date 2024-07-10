@@ -1,11 +1,8 @@
+
+
 require('./wolfgang')
 
 
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
-
-l(process.env.BANANA)
 
 
 

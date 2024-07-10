@@ -1,3 +1,8 @@
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 globalThis.catchAsync = require('./utils/catchAsync')
 
 globalThis.multer = require('multer')
@@ -6,9 +11,9 @@ globalThis.cloudinary = require('cloudinary').v2
 const { CloudinaryStorage } = require('multer-storage-cloudinary')
 
 cloudinary.config({
-  cloud_name: 'dyjjrdmhi',
-  api_key: '577894733943752',
-  api_secret: 'i6xG2ynVN5Lz0M5zRtqyqnxJ3oE',
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
 globalThis.storage = new CloudinaryStorage({
@@ -31,7 +36,7 @@ globalThis.isLoggedIn = (req, res, next) => {
   next()
 }
 
-globalThis.upload = multer({ storage})
+globalThis.upload = multer({ storage: storage})
 
 // globalThis.upload = multer({ dest: 'uploads/' })
 
