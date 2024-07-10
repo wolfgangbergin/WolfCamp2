@@ -31,7 +31,7 @@ globalThis.isLoggedIn = (req, res, next) => {
   next()
 }
 
-globalThis.upload = multer({ storage: storage})
+globalThis.upload = multer({ storage})
 
 // globalThis.upload = multer({ dest: 'uploads/' })
 
