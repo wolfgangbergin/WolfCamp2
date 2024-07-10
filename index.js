@@ -1,6 +1,12 @@
 require('./wolfgang')
 
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+l(process.env.SECRET)
+
 
 
 
@@ -55,6 +61,7 @@ app.use((err, req, res, next) => {
   !err.statusCode && (err.statusCode = 515)
   res.status(err.statusCode).render('error', { err })
 })
+
 
 app.listen(3000, () => {
   l('listening on port 3000')

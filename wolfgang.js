@@ -1,7 +1,23 @@
 globalThis.catchAsync = require('./utils/catchAsync')
 
 globalThis.multer = require('multer')
-globalThis.upload = multer({ dest: 'uploads/' })
+
+globalThis.cloudinary = require('cloudinary').v2
+const { CloudinaryStorage } = require('multer-storage-cloudinary')
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+})
+
+globalThis.storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'WolfCamp',
+    allowedFormats: ['jpeg', 'png', 'jpg'],
+  },
+})
 
 globalThis.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -15,9 +31,12 @@ globalThis.isLoggedIn = (req, res, next) => {
   next()
 }
 
+//globalThis.upload = multer({ storage })
+
+globalThis.upload = multer({ dest: 'uploads/' })
 
 
-globalThis.isOwner = catchAsync(async(req, res, next) => {
+globalThis.isOwner = catchAsync(async (req, res, next) => {
   const { id } = req.params
   const campground = await Campground.findById(id)
   if (!campground.author.equals(req.user._id)) {
@@ -25,15 +44,11 @@ globalThis.isOwner = catchAsync(async(req, res, next) => {
     return res.redirect(`/campgrounds/${id}`)
   }
   next()
-}
-)
+})
 globalThis.usersController = require('./controllers/usersController')
 
-
-
-
-globalThis.isReviewOwner = catchAsync(async(req, res, next) => {
-  const {reviewId } = req.params
+globalThis.isReviewOwner = catchAsync(async (req, res, next) => {
+  const { reviewId } = req.params
   const review = await Review.findById(reviewId)
 
   if (!review.author.equals(req.user?._id)) {
@@ -41,8 +56,7 @@ globalThis.isReviewOwner = catchAsync(async(req, res, next) => {
     return res.redirect(`/user/login`)
   }
   next()
-}
-)
+})
 globalThis.usersController = require('./controllers/usersController')
 globalThis.campgroundsController = require('./controllers/campgroundsController')
 globalThis.reviewsController = require('./controllers/reviewsController')
@@ -106,8 +120,6 @@ globalThis.sessionConfig = {
 globalThis.userRoutes = require('./routes/users')
 globalThis.campgroundRoutes = require('./routes/campgrounds')
 globalThis.reviewRoutes = require('./routes/reviews')
-
-
 
 globalThis.wolfgang = {}
 
