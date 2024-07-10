@@ -5,7 +5,9 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
-l(process.env.SECRET)
+l(process.env.BANANA)
+
+
 
 
 
