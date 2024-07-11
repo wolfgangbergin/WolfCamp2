@@ -16,10 +16,14 @@ const indexGet = async (req, res) => {
 
 const newCampgroundPost = async (req, res, next) => {
   const campground = new Campground(req.body.campground)
+  campground.images = req.files.map((f) => ({
+    url: f.path,
+    filename: f.filename,
+  }))
   campground.author = req.user._id
 
   await campground.save()
-
+l(campground)
   req.flash('success', 'Successfully made a new campground!!! 🎉🎉🎉🎉')
   res.redirect(`/campgrounds`)
 }
