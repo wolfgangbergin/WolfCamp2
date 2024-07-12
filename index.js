@@ -1,7 +1,6 @@
 
 
-require('./wolfgang')
-
+require('./wolfgang') 
 
 
 
@@ -37,6 +36,8 @@ app.use((req, res, next) => {
   next()
 })
 
+
+
 app.use((req, res, next) => {
   res.locals.returnTo = req.session.returnTo
   res.locals.currentUser = req.user
@@ -62,6 +63,8 @@ app.use((err, req, res, next) => {
 })
 
 
+
 app.listen(3000, () => {
   l('listening on port 3000')
 })
+

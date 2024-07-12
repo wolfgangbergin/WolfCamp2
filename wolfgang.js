@@ -122,10 +122,13 @@ globalThis.sessionConfig = {
   },
 }
 
+
 globalThis.userRoutes = require('./routes/users')
 globalThis.campgroundRoutes = require('./routes/campgrounds')
 globalThis.reviewRoutes = require('./routes/reviews')
-
+ const seedDB = require('./seeds/index.js')
+ l( seedDB)
+globalThis.seedDB = seedDB
 globalThis.wolfgang = {}
 
 exports
