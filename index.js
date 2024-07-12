@@ -31,10 +31,10 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
-app.use((req, res, next) => {
-  l(`${req.method}      ${req.url}`)
-  next()
-})
+// app.use((req, res, next) => {
+//   l(`${req.method}      ${req.url}`)
+//   next()
+// })
 
 
 

@@ -23,7 +23,7 @@ const newCampgroundPost = async (req, res, next) => {
   campground.author = req.user._id
 
   await campground.save()
-l(campground)
+
   req.flash('success', 'Successfully made a new campground!!! 🎉🎉🎉🎉')
   res.redirect(`/campgrounds`)
 }

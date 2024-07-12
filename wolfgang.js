@@ -82,7 +82,7 @@ globalThis.l = console.log
 globalThis.d = console.dir
 globalThis.Joi = require('joi')
 globalThis.mongoose = require('mongoose')
-globalThis.Campground = require('./models/campground')
+
 globalThis.cities = require('./seeds/cities')
 globalThis.Schema = mongoose.Schema
 
@@ -127,7 +127,7 @@ globalThis.userRoutes = require('./routes/users')
 globalThis.campgroundRoutes = require('./routes/campgrounds')
 globalThis.reviewRoutes = require('./routes/reviews')
  const seedDB = require('./seeds/index.js')
- l( seedDB)
+
 globalThis.seedDB = seedDB
 globalThis.wolfgang = {}
 
