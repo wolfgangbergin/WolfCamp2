@@ -15,8 +15,9 @@ router
   .get(catchAsync(campgroundsController.showCampgroundGet))
   .put(
     isLoggedIn,
-    validateCampground,
     isOwner,
+    upload.array("image"),
+    validateCampground,
     catchAsync(campgroundsController.editCampgroundPut)
   )
   .delete(
