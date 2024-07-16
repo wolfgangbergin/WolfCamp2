@@ -1,11 +1,33 @@
 const CampgroundSchema = new mongoose.Schema({
   title: String,
+
+
   images: [
     {
       url: String,
       filename: String,
     },
   ],
+
+
+
+
+
+  itemss: {
+    type: [ {
+      url: String,
+      filename: String,
+    },
+  ], 
+    validate: {
+      validator: function(arr) {
+        return arr.length <= 10; // Limit array to a maximum of 10 items
+      },
+      message: 'The array exceeds the limit of 10 items.'
+    }
+  },
+
+
   price: Number,
   description: String,
   location: String,
