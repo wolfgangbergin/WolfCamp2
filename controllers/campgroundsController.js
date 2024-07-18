@@ -43,6 +43,7 @@ const editCampgroundGet = async (req, res) => {
 }
 
 const editCampgroundPut = async (req, res) => {
+  l(req.body)
   const campground = await Campground.findByIdAndUpdate(
     req.params.id,
     { ...req.body.campground },

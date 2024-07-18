@@ -56,6 +56,12 @@
                   <div class="invalid-feedback">
                     Please provide a valid description.
               </div>
+              <div class="md-3">
+                <% campground.images.forEach((img, i) => { %>
+                  <img src="<%= img.url %>" alt="campground image" style="width: 100px; height: 100px;">
+                  <a href="/campgrounds/<%= campground._id %>/images/<%= i %>?_method=DELETE" class="btn btn-danger">Delete</a>
+                <% }) %>
+              </div>
                 </div>
               <div class="mb-3">
                   <button class="btn btn-primary">Submit</button>
