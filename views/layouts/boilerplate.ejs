@@ -1,67 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Boiler plate</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <link href="/css/style.css" rel="stylesheet" type="text/css">
 
-   
-  </head>
-  <body class="d-flex flex-column vh-100 kimboBackground ">
-    <%- include('../partials/navbar') %>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boiler plate</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link href="/css/style.css" rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body class="d-flex flex-column vh-100 kimboBackground ">
+  <%- include('../partials/navbar') %>
     <main class="container mt-5  ">
       <%- include('../partials/flash') %>
-      <%- body %></main>
+        <%- body %>
+    </main>
 
-    
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input@1.3.4/dist/bs-custom-file-input.min.js"></script>
-   
 
     <script>
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
-      ;(() => {
+
+      ; (() => {
         'use strict'
-        bsCustomFileInput.init()
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        const forms = document.querySelectorAll('.validated-form')
+        document.addEventListener('DOMContentLoaded', () => {
+          const fileInput = document.getElementById('image');
+          const form = document.getElementById('myForm');
+          const MAX_FILES = 5; // Set the maximum number of files you want to allow
 
-        // Loop over them and prevent submission
-        Array.from(forms).forEach((form) => {
-          form.addEventListener(
-            'submit',
-            (event) => {
-              if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-              }
+          fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > MAX_FILES) {
+              alert(`You can only upload a maximum of ${MAX_FILES} files.`);
+              fileInput.value = ''; // Clear the input
+            }
+          });
 
-              form.classList.add('was-validated')
-            },
-            false
-          )
-        })
+          form.addEventListener('submit', (event) => {
+            if (fileInput.files.length > MAX_FILES) {
+              alert(`You can only upload a maximum of ${MAX_FILES} files.`);
+              event.preventDefault(); // Prevent form submission
+            }
+          });
+        });
+
       })()
     </script>
 
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        ; (() => {
+          'use strict'
+          bsCustomFileInput.init()
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          const forms = document.querySelectorAll('.validated-form')
+
+          // Loop over them and prevent submission
+          Array.from(forms).forEach((form) => {
+            form.addEventListener(
+              'submit',
+              (event) => {
+                if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+              },
+              false
+            )
+          })
+        })()
+    </script>
+
     <%- include('../partials/footer') %>
-  </body>
+</body>
+
 </html>
