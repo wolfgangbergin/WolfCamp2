@@ -1,5 +1,37 @@
+
+
+async function deleteAllImagesInFolder(folderName) {
+  try {
+    // List all resources in the folder
+    let result = await cloudinary.api.resources({
+      type: 'upload',
+      prefix: folderName, // Folder name
+      max_results: 500 // Maximum number of results (adjust as needed)
+    });
+
+    // Get public IDs of the resources
+    let publicIds = result.resources.map(resource => resource.public_id);
+
+    // Delete resources in batches
+    if (publicIds.length > 0) {
+      await cloudinary.api.delete_resources(publicIds);
+      console.log(`Deleted ${publicIds.length} images from folder: ${folderName}`);
+    } else {
+      console.log(`No images found in folder: ${folderName}`);
+    }
+  } catch (error) {
+    console.error('Error deleting images:', error);
+  }
+}
+
+// Call the function with your folder name
+
+
+
+
 const deleteAll = async (req, res) => {
   await Campground.deleteMany({})
+  deleteAllImagesInFolder('WolfCamp');
   res.redirect('/campgrounds')
 }
 
@@ -43,7 +75,7 @@ const editCampgroundGet = async (req, res) => {
 }
 
 const editCampgroundPut = async (req, res) => {
-  l(req.body)
+
   const campground = await Campground.findByIdAndUpdate(
     req.params.id,
     { ...req.body.campground },
@@ -92,7 +124,18 @@ const showCampgroundGet = async (req, res) => {
 
 const deleteCampground = async (req, res) => {
   const { id } = req.params
-  await Campground.findByIdAndDelete(id)
+  let campground = await Campground.findByIdAndDelete(id)
+
+ 
+
+  if (campground?.images) {
+    for (let image of campground?.images) {
+      l('image', image.filename)
+      await cloudinary.uploader.destroy(image.filename)
+    }
+   
+  }
+
   req.flash('success', ' campground deleted!!! 🎉🎉🎉🎉')
   res.redirect('/campgrounds')
 }

@@ -1,29 +1,8 @@
-class Person {
-    constructor(name) {
-        this.name = name;
+if (req.body.deleteImages) {
+    for (let filename of req.body.deleteImages) {
+      await cloudinary.uploader.destroy(filename)
     }
-
-    sayHello() {
-        console.log("Hello, my name is " + this.name);
-    }
-}
-
-
-Person.prototype.greet = function() {
-    console.log("Hello");
-};
-
-const alice = new Person("Alice");
- // "Hello, my name is Alice"
-
-
-
-// for (let prop in alice) {
-//     console.log(prop); 
-//     // name
-//     // age
-//     // greet
-// }
-
-
-console.log(Reflect.ownKeys(alice)); 
+    await campground.updateOne({
+      $pull: { images: { filename: { $in: req.body.deleteImages } } },
+    })
+  }

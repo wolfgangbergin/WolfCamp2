@@ -8,7 +8,7 @@ const { places, descriptors } = require('./seedHelpers')
 
 const seedDB = async () => {
  await Campground.deleteMany({})
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 20; i++) {
     const random1000 = Math.floor(Math.random() * 1000)
     const price = Math.floor(Math.random() * 20) + 10
     const camp = new Campground({
@@ -21,13 +21,13 @@ const seedDB = async () => {
       wolfman: 'wolfman',
       images:  [
         {
-          url: 'https://res.cloudinary.com/dyjjrdmhi/image/upload/v1720719118/WolfCamp/ovljd90sww7mv2zstnij.webp',
-          filename: 'WolfCamp/ovljd90sww7mv2zstnij',
+          url: 'https://res.cloudinary.com/dyjjrdmhi/image/upload/v1721582520/tempCamp/yqdu11woyo3nhvhwsnl4.jpg',
+          filename: 'tempCamp/yqdu11woyo3nhvhwsnl4.jpg',
          
         },
         {
-          url: 'https://res.cloudinary.com/dyjjrdmhi/image/upload/v1720719118/WolfCamp/s24foj3emmg0k2wk9dp6.jpg',
-          filename: 'WolfCamp/s24foj3emmg0k2wk9dp6',
+          url: 'https://res.cloudinary.com/dyjjrdmhi/image/upload/v1721582011/tempCamp/weh6tocntjhkktaiilqz.jpg',
+          filename: 'tempCamp/weh6tocntjhkktaiilqz.jpg',
          
         }
       ],
@@ -44,3 +44,4 @@ const seedDB = async () => {
 
 
 module.exports = seedDB
+
