@@ -8,8 +8,8 @@ router.get('/wolf', (req, res) => {
 })
 
 
-router.get('/seed', (req, res) => {
-  seedDB()
+router.get('/seed', async(req, res) => {
+  await seedDB()
   res.redirect('/campgrounds')
   //res.render('campgrounds/index', { campgrounds })
 })

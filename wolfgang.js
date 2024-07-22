@@ -129,6 +129,10 @@ globalThis.reviewRoutes = require('./routes/reviews')
  const seedDB = require('./seeds/index.js')
 
 globalThis.seedDB = seedDB
-globalThis.wolfgang = {}
+globalThis.wolfgang = {
+  kim: () => {
+    console.log('Kim313')
+  }
+}
 
 exports

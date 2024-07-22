@@ -40,11 +40,13 @@ passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) => {
   res.locals.returnTo = req.session.returnTo
+  
   res.locals.currentUser = req.user
   res.locals.success = req.flash('success')
   res.locals.error = req.flash('error')
   next()
 })
+
 
 app.use('/user', userRoutes)
 app.use('/home', home)
@@ -65,6 +67,7 @@ app.use((err, req, res, next) => {
 
 
 app.listen(3000, () => {
+  wolfgang.kim()
   l('listening on port 3000')
 })
 
