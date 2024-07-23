@@ -1,7 +1,10 @@
 
+
 if (process.env.NODE_ENV !== 'production') {
+  
   require('dotenv').config()
 }
+
 
 globalThis.catchAsync = require('./utils/catchAsync')
 

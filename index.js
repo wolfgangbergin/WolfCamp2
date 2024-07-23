@@ -8,6 +8,11 @@ require('./wolfgang')
 
 
 
+
+
+
+
+
 mongoose
   .connect('mongodb://127.0.0.1:27017/wolf-camp', {
     useNewUrlParser: true,
@@ -67,7 +72,7 @@ app.use((err, req, res, next) => {
 
 
 app.listen(3000, () => {
-  wolfgang.kim()
+ // wolfgang.kim()
   l('listening on port 3000')
 })
 
