@@ -26,8 +26,7 @@ async function deleteAllImagesInFolder(folderName) {
 
 // Call the function with your folder name
 
-
-
+//https://res.cloudinary.com/dyjjrdmhi/image/upload/v1722180402/WolfCamp/blospx4nplcomf5usqi8.webp
 
 const deleteAll = async (req, res) => {
   await Campground.deleteMany({})
@@ -48,10 +47,25 @@ const indexGet = async (req, res) => {
 
 const newCampgroundPost = async (req, res, next) => {
   const campground = new Campground(req.body.campground)
+  l('campg9999ound', req.files)
+if (req.files.length === 0) {
+    req.files.push(  {
+      fieldname: 'image',
+      originalname: '240523-atlas-jlo-tease_kyycm0.jpeg',
+      encoding: '7bit',
+      mimetype: 'image/jpeg',
+      path: 'https://res.cloudinary.com/dyjjrdmhi/image/upload/v1722181654/WolfCamp/f5gjpulkkhy930hvuar9.jpg',
+      size: 10812,
+      filename: 'WolfCamp/f5gjpulkkhy930hvuar9'
+    })
+  
+}
+
   campground.images = req.files.map((f) => ({
     url: f.path,
     filename: f.filename,
   }))
+l('campground', campground.images[0])
   campground.author = req.user._id
 
   await campground.save()

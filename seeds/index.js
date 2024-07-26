@@ -7,8 +7,8 @@ const { places, descriptors } = require('./seedHelpers')
 //   .catch((err) => console.error('Could not connect to MongoDB...🤬🤬🤬', err))
 
 const seedDB = async () => {
- await Campground.deleteMany({})
-  for (let i = 0; i < 20; i++) {
+ //await Campground.deleteMany({})
+  for (let i = 0; i < 1; i++) {
     const random1000 = Math.floor(Math.random() * 1000)
     const price = Math.floor(Math.random() * 20) + 10
     const camp = new Campground({
@@ -21,15 +21,11 @@ const seedDB = async () => {
       wolfman: 'wolfman',
       images:  [
         {
-          url: 'https://res.cloudinary.com/dyjjrdmhi/image/upload/v1721582520/tempCamp/yqdu11woyo3nhvhwsnl4.jpg',
-          filename: 'tempCamp/yqdu11woyo3nhvhwsnl4.jpg',
+          url: 'https://res.cloudinary.com/dyjjrdmhi/image/upload/v1722181654/WolfCamp/f5gjpulkkhy930hvuar9.jpg',
+          filename: 'WolfCamp/f5gjpulkkhy930hvuar9',
          
         },
-        {
-          url: 'https://res.cloudinary.com/dyjjrdmhi/image/upload/v1721582011/tempCamp/weh6tocntjhkktaiilqz.jpg',
-          filename: 'tempCamp/weh6tocntjhkktaiilqz.jpg',
-         
-        }
+     
       ],
     })
     await camp.save()

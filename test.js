@@ -1,14 +1,21 @@
-<div class="mb-3">
-<label class="form-label
-    " for="image">Upload Image</label>
-<div class="form-file custom-file">
-  <input type="file" class="form-file-input" id="image" name="image" multiple required>
-  <label class="form-file-label" for="image">
-    <span class="form-file-text custom-file-label">Choose image(s)...</span>
-    <span class="form-file-button"></span>
-  </label>
-  <div class="invalid-feedback">
-    Please provide a valid image.
-  </div>
-</div>
-</div>
+{
+  fieldname: 'image',
+  originalname: '240523-atlas-jlo-tease_kyycm0.jpeg',
+  encoding: '7bit',
+  mimetype: 'image/jpeg',
+  path: 'https://res.cloudinary.com/dyjjrdmhi/image/upload/v1722181654/WolfCamp/f5gjpulkkhy930hvuar9.jpg',
+  size: 10812,
+  filename: 'WolfCamp/f5gjpulkkhy930hvuar9'
+}
+
+
+
+{
+  fieldname: 'image',
+  originalname: 'jennifer-lopez-57d348c994.jpeg',
+  encoding: '7bit',
+  mimetype: 'image/jpeg',
+  path: 'https://res.cloudinary.com/dyjjrdmhi/image/upload/v1722183619/WolfCamp/fojpqpzu7qo8smxqniaf.jpg',
+  size: 17279,
+  filename: 'WolfCamp/fojpqpzu7qo8smxqniaf'
+}

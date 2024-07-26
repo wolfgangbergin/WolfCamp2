@@ -16,7 +16,7 @@ const CampgroundSchema = new mongoose.Schema({
     type: [ImageSchema],
     validate: {
       validator: function (arr) {
-        return arr.length <= 5 // Limit array to a maximum of 10 items
+        return arr.length <= 10 // Limit array to a maximum of 10 items
       },
       message: 'The array exceeds the limit of 5 items.',
     },
