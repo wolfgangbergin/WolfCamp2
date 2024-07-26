@@ -1,2 +1,14 @@
-connect.sid	s%3AX7xVW51lwoRLuH2mfm_1Kv0ve32DdNXH.FBPbwQCcGF%2BmM83jHE04Y18UJ%2BMW3wce3aBeZpmk9L8	192.168.0.153	/	7/30/2024, 3:18:05 PM	95 B		✓	
-connect.sid	s%3ARJd6HkLknDACtrVho3hecbYLJX-TeZG5.YTZb3kwEvpVF%2BsYayfDsCqgNo0hj5qiNXLm2UBCDgrA	192.168.0.153	/	7/30/2024, 3:19:14 PM	93 B		✓	
+<div class="mb-3">
+<label class="form-label
+    " for="image">Upload Image</label>
+<div class="form-file custom-file">
+  <input type="file" class="form-file-input" id="image" name="image" multiple required>
+  <label class="form-file-label" for="image">
+    <span class="form-file-text custom-file-label">Choose image(s)...</span>
+    <span class="form-file-button"></span>
+  </label>
+  <div class="invalid-feedback">
+    Please provide a valid image.
+  </div>
+</div>
+</div>

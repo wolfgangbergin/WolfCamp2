@@ -71,8 +71,10 @@ app.use((err, req, res, next) => {
 
 
 
+require('./autoLogein.js')
+
 app.listen(3000, () => {
- // wolfgang.kim()
+//  wolfgang.kim()
   l('listening on port 3000')
 })
 

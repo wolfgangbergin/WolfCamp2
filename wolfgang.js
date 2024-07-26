@@ -6,6 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 
+
 globalThis.catchAsync = require('./utils/catchAsync')
 
 globalThis.multer = require('multer')
@@ -135,7 +136,13 @@ globalThis.seedDB = seedDB
 globalThis.wolfgang = {
   kim: () => {
     console.log('Kim313')
+    console.log(process.env)
   }
 }
+
+
+
+
+
 
 exports
