@@ -1,65 +1,88 @@
 <% layout('layouts/boilerplate') %>
-   
-    <div class="row">
-        <h1 class="text-center">Add New Campground</h1>
-        <div class="col-6 offset-3">
-        <form novalidate action="/campgrounds" method="POST" class="validated-form" enctype="multipart/form-data">
-              <div class="mb-3">
-                  <label class="form-label" for="title">Title</label>
-                  <input required class="form-control"  type="text" name="campground[title]" id="title" value="A cool Title" ></input>
-                  <div class="invalid-feedback">
-                    Please provide a valid title.
-              </div>
-              <div class="mb-3">
-                  <label class="form-label" for="location">Location</label>
-                  <input required class="form-control" type="text" name="campground[location]" id="location" value="Detroit"></input>
-                  <div class="invalid-feedback">
-                    Please provide a valid location.
-              </div>
-              </div>
 
-              <!-- <input type="file" name="image" id="image" class="form-control" required multiple>
-              <div class="invalid-feedback">
-                    Please provide a valid image.
-              </div> -->
-             
-              <div class="mb-3">
-                  <label class="form-label" for="image">Image</label>
-                  <input required class="form-control" type="text" name="campground[image]" id="image" value="https://res.cloudinary.com/dyjjrdmhi/image/upload/v1722024306/tempCamp/ntdw3fdjkpnkkrua1wr2.png"></input>
-                  <div class="invalid-feedback">
-                    Please provide a valid image.
-              </div>
-                </div>
-             
-
-
-              <div class="mb-3">
-                <label class="form-label" for="price">Price</label>
-                <div class="input-group">
-                <span class="input-group-text">$</span>
-                <input required type="text" class="form-control" id="price" name="campground[price]" value="10" placeholder="0.00" aria-label="Amount (to the nearest dollar)">
-                <div class="invalid-feedback">
-                    Please provide a valid price.
-              </div>
-                <span class="input-group-text">.00</span>
+  <div class="row">
+    <h1 class="text-center">Add New Campground</h1>
+    <div class="col-6 offset-3">
+      <form id="myFrom" novalidate action="/campgrounds" method="POST" class="validated-form"
+        enctype="multipart/form-data">
+        <div class="mb-3">
+          <label class="form-label" for="title">Title</label>
+          <input required class="form-control" type="text" name="campground[title]" id="title"
+            value="A cool Title"></input>
+          <div class="invalid-feedback">
+            Please provide a valid title.
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="location">Location</label>
+            <input required class="form-control" type="text" name="campground[location]" id="location"
+              value="Detroit"></input>
+            <div class="invalid-feedback">
+              Please provide a valid location.
             </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label
+                " for="image">Upload Image</label>
+            <div class="form-file custom-file">
+              <input type="file" class="form-file-input" id="image" name="image" multiple >
+              <label class="form-file-label" for="image">
+                <span class="form-file-text custom-file-label">Choose image(s)...</span>
+                <span class="form-file-button"></span>
+              </label>
+              <div class="invalid-feedback">
+                Please provide a valid image.
               </div>
-              
-              <div class="mb-3">
-                  <label class="form-label" for="description">Description</label><br>
-                  <textarea required class="form-control" name="campground[description]" id="description" cols="30" rows="10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident quasi cupiditate, in aperiam voluptatum rem laboriosam ab aspernatur sed nam ipsum libero a debitis iusto exercitationem dolorum necessitatibus facilis reiciendis.</textarea>
-                  <div class="invalid-feedback">
-                    Please provide a valid description.
+            </div>
+          </div>
+          
+          <!-- <div class="mb-3">
+            <label class="form-label
+                " for="image">Upload Image</label>
+            <div class="form-file custom-file">
+              <input type="file" class="form-file-input" id="image" name="image" multiple required>
+              <label class="form-file-label" for="image">
+                <span class="form-file-text custom-file-label">Choose image(s)...</span>
+                <span class="form-file-button"></span>
+              </label>
+              <div class="invalid-feedback">
+                Please provide a valid image.
               </div>
-                </div>
-              <div class="mb-3">
-                  <button class="btn btn-primary">Submit</button>
+            </div>
+          </div> -->
+
+
+
+
+          <div class="mb-3">
+            <label class="form-label" for="price">Price</label>
+            <div class="input-group">
+              <span class="input-group-text">$</span>
+              <input required type="text" class="form-control" id="price" name="campground[price]" value="10"
+                placeholder="0.00" aria-label="Amount (to the nearest dollar)">
+              <div class="invalid-feedback">
+                Please provide a valid price.
               </div>
-            
-          </form>
-      
-          <a href="/campgrounds">Go Back</a> 
-        </div>
-      </div>
-      
-   
+              <span class="input-group-text">.00</span>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="description">Description</label><br>
+            <textarea required class="form-control" name="campground[description]" id="description" cols="30"
+              rows="10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident quasi cupiditate, in aperiam
+              voluptatum rem laboriosam ab aspernatur sed nam ipsum libero a debitis iusto exercitationem dolorum
+              necessitatibus facilis reiciendis.</textarea>
+            <div class="invalid-feedback">
+              Please provide a valid description.
+            </div>
+          </div>
+          <div class="mb-3">
+            <button class="btn btn-primary">Submit</button>
+          </div>
+
+      </form>
+
+      <a href="/campgrounds">Go Back</a>
+    </div>
+  </div>
