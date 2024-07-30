@@ -37,7 +37,5 @@ const seedDB = async () => {
 // })
 
 
-//wolf
-//kim313
 module.exports = seedDB
 
