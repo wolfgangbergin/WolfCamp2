@@ -47,7 +47,7 @@ const indexGet = async (req, res) => {
 
 const newCampgroundPost = async (req, res, next) => {
   const campground = new Campground(req.body.campground)
-  l('campg9999ound', req.files)
+
 if (req.files.length === 0) {
     req.files.push(  {
       fieldname: 'image',

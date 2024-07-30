@@ -1,11 +1,6 @@
-
-
 if (process.env.NODE_ENV !== 'production') {
-  
   require('dotenv').config()
 }
-
-
 
 globalThis.catchAsync = require('./utils/catchAsync')
 
@@ -40,10 +35,9 @@ globalThis.isLoggedIn = (req, res, next) => {
   next()
 }
 
-globalThis.upload = multer({ storage: storage})
+globalThis.upload = multer({ storage: storage })
 
 // globalThis.upload = multer({ dest: 'uploads/' })
-
 
 globalThis.isOwner = catchAsync(async (req, res, next) => {
   const { id } = req.params
@@ -126,23 +120,42 @@ globalThis.sessionConfig = {
   },
 }
 
-
 globalThis.userRoutes = require('./routes/users')
 globalThis.campgroundRoutes = require('./routes/campgrounds')
 globalThis.reviewRoutes = require('./routes/reviews')
- const seedDB = require('./seeds/index.js')
+const seedDB = require('./seeds/index.js')
 
 globalThis.seedDB = seedDB
 globalThis.wolfgang = {
   kim: () => {
     console.log('Kim313')
     console.log(process.env)
-  }
+  },
+
+  autologin: async (req, res, next) => {
+    if (process.env.NODE_ENV === 'development') {
+      const devUserEmail = 'bergin@bergin.com'
+      const tempUser = await User.findOne({ email: devUserEmail })
+      console.log('tempUser', tempUser)
+      if (!tempUser) {
+        console.error('Dev user not found!')
+        return
+      }
+      passport.use(
+        new (require('passport-custom'))((req, done) => {
+          done(null, tempUser)
+        })
+      )
+      req.login(tempUser, (err) => {
+        if (err) {
+          return next(err)
+        }
+        console.log('Auto-logged in as developer user.')
+        req.flash('success', 'Auto-logged in as developer user.')
+        res.redirect('/campgrounds')
+      })
+    }
+  },
 }
-
-
-
-
-
 
 exports
