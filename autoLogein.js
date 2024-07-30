@@ -1,10 +1,11 @@
-const passport = require('passport');
-const User = require('./models/user'); // Adjust the path to your User model
 
 // Function to serialize and deserialize user (standard setup)
 passport.serializeUser((user, done) => {
+  l('user', user)
   done(null, user.id);
 });
+
+
 
 passport.deserializeUser((id, done) => {
   User.findById(id, (err, user) => {
@@ -13,13 +14,17 @@ passport.deserializeUser((id, done) => {
 });
 
 
+
+
 // Development auto-login setup
 if (process.env.NODE_ENV === 'development') {
   const devUserEmail = 'bergin@bergin.com'; // Replace with a real developer email
 
-  User.findOne({ email: devUserEmail }).then((err, user) => {
+  User.findOne({ email: devUserEmail }).then(( user, err) => {
+    
+
     if (err) {
-      console.error('Errrrrrrrrrrrrrrrrrror fetching dev user:', err);
+      console.error('Error fetching dev user:', err);
       return;
     }
     if (!user) {
@@ -33,9 +38,10 @@ if (process.env.NODE_ENV === 'development') {
         done(null, user);
       })
     );
-
+   
     // Auto-login middleware
     function autoLoginMiddleware(req, res, next) {
+      console.log('kombo3133333333', req, user)
       if (!req.isAuthenticated()) {
         req.login(user, (err) => {
           if (err) {
@@ -50,7 +56,7 @@ if (process.env.NODE_ENV === 'development') {
     }
 
     // Use auto-login middleware in your app
-    app.use(autoLoginMiddleware);
+    // app.use(autoLoginMiddleware());
   });
 }
 
