@@ -127,32 +127,29 @@ const seedDB = require('./seeds/index.js')
 
 globalThis.seedDB = seedDB
 globalThis.wolfgang = {
-  kim: () => {
-    console.log('Kim313')
-    console.log(process.env)
-  },
+  kim: () => {},
 
   autologin: async (req, res, next) => {
     if (process.env.NODE_ENV === 'development') {
       const devUserEmail = 'bergin@bergin.com'
-      const tempUser = await User.findOne({ email: devUserEmail })
-      console.log('tempUser', tempUser)
-      if (!tempUser) {
+      const user = await User.findOne({ email: devUserEmail })
+
+      if (!user) {
         console.error('Dev user not found!')
         return
       }
       passport.use(
         new (require('passport-custom'))((req, done) => {
-          done(null, tempUser)
+          done(null, user)
         })
       )
-      req.login(tempUser, (err) => {
+      req.login(user, (err) => {
         if (err) {
           return next(err)
         }
-        console.log('Auto-logged in as developer user.')
+        console.log('autologin')
         req.flash('success', 'Auto-logged in as developer user.')
-        res.redirect('/campgrounds')
+        res.redirect('/home/wolf')
       })
     }
   },

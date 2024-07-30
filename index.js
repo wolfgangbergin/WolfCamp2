@@ -33,7 +33,31 @@ app.use((req, res, next) => {
 })
 
 
-app.get('/autologin', wolfgang.autologin)
+
+
+
+
+
+
+
+
+let count = 0
+
+app.use('/autologin', wolfgang.autologin)
+
+app.use('*', (req, res, next) => {
+ 
+  l('count:', count)
+if (count === 0) {
+ 
+  count++
+  wolfgang.autologin(req, res, next)
+  return
+}
+
+  next()
+}
+)
 
 app.use('/user', userRoutes)
 app.use('/home', home)
