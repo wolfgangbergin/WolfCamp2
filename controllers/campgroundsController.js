@@ -26,7 +26,12 @@ async function deleteAllImagesInFolder(folderName) {
 
 // Call the function with your folder name
 
+<<<<<<< HEAD
 //https://res.cloudinary.com/dyjjrdmhi/image/upload/v1722180402/WolfCamp/blospx4nplcomf5usqi8.webp
+=======
+
+
+>>>>>>> test9
 
 const deleteAll = async (req, res) => {
   await Campground.deleteMany({})
