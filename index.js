@@ -35,19 +35,12 @@ app.use((req, res, next) => {
 
 
 
-
-
-
-
-
-
 let count = 0
 
 app.use('/autologin', wolfgang.autologin)
 
 app.use('*', (req, res, next) => {
- 
-  l('count:', count)
+
 if (count === 0) {
  
   count++

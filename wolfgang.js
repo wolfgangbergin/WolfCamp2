@@ -149,7 +149,8 @@ globalThis.wolfgang = {
         }
         console.log('autologin')
         req.flash('success', 'Auto-logged in as developer user.')
-        res.redirect('/home/wolf')
+     
+        res.redirect(`${req.originalUrl}`)
       })
     }
   },
