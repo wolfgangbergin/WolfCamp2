@@ -151,7 +151,7 @@ globalThis.wolfgang = {
         console.log('autologin')
         req.flash('success', 'Auto-logged in as developer user.')
         if (req.originalUrl === '/autologin') {
-          res.redirect(`/campgrounds`)
+          res.redirect(res.locals.testArr[res.locals.testArr.length - 2])
           return
         }
         res.redirect(`${req.originalUrl}`)
@@ -159,6 +159,7 @@ globalThis.wolfgang = {
     }
   },
 }
+
 
 
 exports
