@@ -23,7 +23,15 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
+
+
+const testArr = [ '', '', '',]
+
 app.use((req, res, next) => {
+  testArr.push(req.originalUrl)
+res.locals.testArr = testArr
+
+ console.dir(res.locals.testArr)
   res.locals.returnTo = req.session.returnTo
 
   res.locals.currentUser = req.user
@@ -35,12 +43,6 @@ app.use((req, res, next) => {
 
 
 
-
-
-
-
-
-//wolf
 
 let count = 0
 
