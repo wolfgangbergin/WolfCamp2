@@ -25,10 +25,12 @@ passport.deserializeUser(User.deserializeUser())
 
 
 
-const testArr = [ '', '', '',]
+
+const testArr = []
 
 app.use((req, res, next) => {
   testArr.push(req.originalUrl)
+  testArr.splice(0, testArr.length - 5)
 res.locals.testArr = testArr
 
  console.dir(res.locals.testArr)
