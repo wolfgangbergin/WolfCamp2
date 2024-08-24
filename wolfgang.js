@@ -125,13 +125,14 @@ globalThis.campgroundRoutes = require('./routes/campgrounds')
 globalThis.reviewRoutes = require('./routes/reviews')
 const seedDB = require('./seeds/index.js')
 
+
 globalThis.seedDB = seedDB
 globalThis.wolfgang = {
   kim: () => {},
 
   autologin: async (req, res, next) => {
     if (process.env.NODE_ENV === 'development') {
-      const devUserEmail = 'bergin@bergin.com'
+      const devUserEmail = 'wolfgang@wolfgang.com'
       const user = await User.findOne({ email: devUserEmail })
 
       if (!user) {
@@ -149,11 +150,15 @@ globalThis.wolfgang = {
         }
         console.log('autologin')
         req.flash('success', 'Auto-logged in as developer user.')
-     
+        if (req.originalUrl === '/autologin') {
+          res.redirect(`/campgrounds`)
+          return
+        }
         res.redirect(`${req.originalUrl}`)
       })
     }
   },
 }
+
 
 exports
