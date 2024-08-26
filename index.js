@@ -26,10 +26,6 @@ passport.deserializeUser(User.deserializeUser())
 
 
 
-//temp1
-//temp2
-
-
 
 const testArr = []
 
