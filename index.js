@@ -19,6 +19,8 @@ app.use(session(sessionConfig))
 app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
+app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist')));
+
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
