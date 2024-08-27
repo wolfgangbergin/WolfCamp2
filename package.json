@@ -5,15 +5,14 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js -e js,mjs,cjs,json,ejs",
-    "start": "nodemon test1.js -e js,mjs,cjs,json,ejs"
-
-
-
+    "dev1": "nodemon index.js -e .",
+    "dev2": "nodemon index1.js -e .",
+    "start": "nodemon test1.js -e ."
   },
   "author": "Wolfgang",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "cloudinary": "^1.41.3",
     "connect-flash": "^0.1.1",
     "dotenv": "^16.4.5",
