@@ -12,7 +12,7 @@ const seedDB = async () => {
     const random1000 = Math.floor(Math.random() * 1000)
     const price = Math.floor(Math.random() * 20) + 10
     const camp = new Campground({
-      author: '667c3a6e707815b367a8e190',
+      author: '66c91471ca5b78ed31dc19a8',
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${descriptors[Math.floor(Math.random() * descriptors.length)]} ${places[Math.floor(Math.random() * places.length)]}`,
       price,
@@ -21,7 +21,7 @@ const seedDB = async () => {
       wolfman: 'wolfman',
       images:  [
         {
-          url: 'https://res.cloudinary.com/dyjjrdmhi/image/upload/v1722181654/WolfCamp/f5gjpulkkhy930hvuar9.jpg',
+          url: 'http://localhost:3000/detroit',
           filename: 'WolfCamp/f5gjpulkkhy930hvuar9',
          
         },

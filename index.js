@@ -27,7 +27,10 @@ passport.deserializeUser(User.deserializeUser())
 
 
 
-//temp
+app.get('/detroit', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'detroit.jpg'));
+});
+
 
 const testArr = []
 
@@ -36,7 +39,7 @@ app.use((req, res, next) => {
   testArr.splice(0, testArr.length - 5)
 res.locals.testArr = testArr
 
- console.dir(res.locals.testArr)
+
   res.locals.returnTo = req.session.returnTo
 
   res.locals.currentUser = req.user
