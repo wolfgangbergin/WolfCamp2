@@ -49,22 +49,27 @@ const newCampgroundPost = async (req, res, next) => {
   const campground = new Campground(req.body.campground)
 
 if (req.files.length === 0) {
+  l('test515')
+  l(req.files)
     req.files.push(  {
       fieldname: 'image',
       originalname: '240523-atlas-jlo-tease_kyycm0.jpeg',
       encoding: '7bit',
       mimetype: 'image/jpeg',
-      path: 'https://res.cloudinary.com/dyjjrdmhi/image/upload/v1722181654/WolfCamp/f5gjpulkkhy930hvuar9.jpg',
+      path:  'http://localhost:3000/detroit',
       size: 10812,
-      filename: 'WolfCamp/f5gjpulkkhy930hvuar9'
+      filename: 'detroit.jpg'
     })
   
 }
+
+l(req.files)
 
   campground.images = req.files.map((f) => ({
     url: f.path,
     filename: f.filename,
   }))
+  
   campground.author = req.user._id
   
   await campground.save()

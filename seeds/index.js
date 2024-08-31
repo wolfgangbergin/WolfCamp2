@@ -22,7 +22,7 @@ const seedDB = async () => {
       images:  [
         {
           url: 'http://localhost:3000/detroit',
-          filename: 'WolfCamp/f5gjpulkkhy930hvuar9',
+          filename: 'detroit.jpg',
          
         },
      
