@@ -65,9 +65,8 @@ if (req.files.length === 0) {
     url: f.path,
     filename: f.filename,
   }))
-l('campground', campground.images[0])
   campground.author = req.user._id
-
+  
   await campground.save()
 
   req.flash('success', 'Successfully made a new campground!!! 🎉🎉🎉🎉')
@@ -144,7 +143,7 @@ const deleteCampground = async (req, res) => {
 
   if (campground?.images) {
     for (let image of campground?.images) {
-      l('image', image.filename)
+      
       await cloudinary.uploader.destroy(image.filename)
     }
    

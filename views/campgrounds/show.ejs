@@ -52,7 +52,7 @@
             <%= campground.location %>
           </li>
 
-          <li class="list-group-item">Submitted by <%= campground.author.username %>
+          <li class="list-group-item">Submitted by <%= campground.author?.username %>
           </li>
 
           <li class="list-group-item">$<%= campground.price %>.00</li>
@@ -61,7 +61,7 @@
 
 
 
-        <% if(campground.author.equals(currentUser?._id)) { %>
+        <% if(campground.author?.equals(currentUser?._id)) { %>
 
           <div class="card-body">
             <a href="/campgrounds" class="card-link btn btn-info">Go Back</a>

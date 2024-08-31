@@ -34,7 +34,7 @@ app.use((req, res, next) => {
   testArr.splice(0, testArr.length - 5)
 res.locals.testArr = testArr
 
- console.dir(res.locals.testArr)
+
   res.locals.returnTo = req.session.returnTo
 
   res.locals.currentUser = req.user
