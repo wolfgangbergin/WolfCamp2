@@ -63,7 +63,7 @@ if (req.files.length === 0) {
   
 }
 
-l(req.files)
+
 
   campground.images = req.files.map((f) => ({
     url: f.path,
