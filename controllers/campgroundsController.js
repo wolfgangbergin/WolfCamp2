@@ -53,15 +53,16 @@ const newCampgroundPost = async (req, res, next) => {
 
   
  
- l(geoData.body.features[0].geometry.coordinates)
+
 
 
  
   const campground = new Campground(req.body.campground)
 
+   campground.geometry = geoData.body.features[0].geometry
+
 if (req.files.length === 0) {
-  l('test515')
-  l(req.files)
+ 
     req.files.push(  {
       fieldname: 'image',
       originalname: '240523-atlas-jlo-tease_kyycm0.jpeg',
@@ -82,7 +83,7 @@ if (req.files.length === 0) {
   }))
   
   campground.author = req.user._id
-  
+  l('campground', campground)
   await campground.save()
 
   req.flash('success', 'Successfully made a new campground!!! 🎉🎉🎉🎉')
