@@ -46,6 +46,14 @@ const indexGet = async (req, res) => {
 }
 
 const newCampgroundPost = async (req, res, next) => {
+ const geoData = await geocoder.forwardGeocode({
+    query: req.body.campground.location,
+    limit: 1,
+  }).send()
+
+  
+  //l(geoData.body.features)
+ l(geoData.body.features[0].geometry.coordinates)
   const campground = new Campground(req.body.campground)
 
 if (req.files.length === 0) {

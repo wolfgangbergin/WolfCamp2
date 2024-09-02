@@ -128,6 +128,10 @@ const seedDB = require('./seeds/index.js')
 
 globalThis.seedDB = seedDB
 globalThis.wolfgang = {
+  mbxGeocoding: require('@mapbox/mapbox-sdk/services/geocoding'),
+  //mapBoxToken: process.env.MAPBOX_TOKEN,
+  
+
   kim: () => {},
 
   autologin: async (req, res, next) => {
@@ -160,6 +164,6 @@ globalThis.wolfgang = {
   },
 }
 
-
+globalThis.geocoder = wolfgang.mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN}),
 
 exports
