@@ -52,8 +52,11 @@ const newCampgroundPost = async (req, res, next) => {
   }).send()
 
   
-l(geoData.body.features)
+ 
  l(geoData.body.features[0].geometry.coordinates)
+
+
+ 
   const campground = new Campground(req.body.campground)
 
 if (req.files.length === 0) {
