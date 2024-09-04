@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-6 ">
-
+     <div id="map" style="width: 100%; height: 300px;"></div>
 
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -146,3 +146,17 @@
             <%} %>
 
           </div>
+
+          <script>
+            mapboxgl.accessToken = '<%-MAPBOX_TOKEN%>';
+            const map = new mapboxgl.Map({
+              container: 'map',
+              style: 'mapbox://styles/mapbox/streets-v11',
+              center: ['<%- campground.geometry.coordinates[0] %>', '<%- campground.geometry.coordinates[1] %>'],
+              zoom: 9
+            });
+
+            const marker = new mapboxgl.Marker()
+              .setLngLat(['<%- campground.geometry.coordinates[0] %>', '<%- campground.geometry.coordinates[1] %>'])
+              .addTo(map);
+          </script>

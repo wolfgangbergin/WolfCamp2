@@ -165,5 +165,6 @@ globalThis.wolfgang = {
 }
 
 globalThis.geocoder = wolfgang.mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN}),
+globalThis.MAPBOX_TOKEN = process.env.MAPBOX_TOKEN
 
 exports
