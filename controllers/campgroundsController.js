@@ -68,7 +68,7 @@ if (req.files.length === 0) {
       originalname: '240523-atlas-jlo-tease_kyycm0.jpeg',
       encoding: '7bit',
       mimetype: 'image/jpeg',
-      path:  'http://localhost:3000/detroit',
+      path:  '/images/detroit.jpg',
       size: 10812,
       filename: 'detroit.jpg'
     })
