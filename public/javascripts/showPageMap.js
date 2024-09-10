@@ -10,4 +10,7 @@ mapboxgl.accessToken = mapboxToken;
 
             const marker = new mapboxgl.Marker()
               .setLngLat(Coordinates)
+              .setPopup(new mapboxgl.Popup().setHTML(`<h3>name</h3>`))
               .addTo(map);
+
+          
