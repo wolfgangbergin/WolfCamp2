@@ -1,7 +1,7 @@
 mapboxgl.accessToken = mapboxToken;
             const map = new mapboxgl.Map({
               container: 'map',
-              style: 'mapbox://styles/mapbox/streets-v11',
+              style: 'mapbox://styles/mapbox/streets-v10',
               center: Coordinates,
               zoom: 10
             });
@@ -10,7 +10,7 @@ mapboxgl.accessToken = mapboxToken;
 
             const marker = new mapboxgl.Marker()
               .setLngLat(Coordinates)
-              .setPopup(new mapboxgl.Popup().setHTML(`<h3>name</h3>`))
+              .setPopup(new mapboxgl.Popup().setHTML(`<h3>${title}</h3>`))
               .addTo(map);
 
           
