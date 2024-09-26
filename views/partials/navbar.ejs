@@ -8,6 +8,7 @@
 
 
     <div class="collapse navbar-collapse " id="navbarNav">
+    
       <div class="navbar-nav">
         <a class="nav-link " href="/home/wolf">test</a>
 
@@ -15,12 +16,10 @@
 
         <a class="nav-link" href="/campgrounds/new">New Campgrounds</a>
 
-        <a class="nav-link" href="/campgrounds/deleteAll">Delete All</a>
-        
-        <a class="nav-link" href="/home/seed">Seed</a>
+       
         
 
-        <a class="nav-link" href="/autologin">autologin</a>
+       
       </div>
       <div class="navbar-nav ml-auto">
         <% if(!currentUser) {%>
@@ -34,6 +33,19 @@
       
         <a class="nav-link" href="/user/logout">Logout</a>
         <% } %>
+      </div>
+      <div class="navbar-nav ml-auto">
+        <% if(process.env.NODE_ENV==='development') {%>
+         
+          <a class="nav-link" href="/autologin">autologin</a>
+
+    
+          
+        <% } %>
+
+        <a class="nav-link" href="/campgrounds/deleteAll">Delete All</a>
+        
+        <a class="nav-link" href="/home/seed">Seed</a>
       </div>
 
      
