@@ -26,7 +26,9 @@
         >
         <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">Show</a>
         <% console.log(currentUser?._id) %>
-        <% console.log(campground.author === new ObjectId('66f593ac46ed7332caec0fde') ) %>
+        <% console.log('testtttt') %>
+        <% console.log(adminWolfgang) %>
+     
        
         <% if(campground.author?.equals(currentUser?._id)) { %>
         <button class="btn btn-danger">Delete</button>
