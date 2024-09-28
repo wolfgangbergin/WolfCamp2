@@ -25,7 +25,12 @@
         method="POST"
         >
         <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">Show</a>
+        <% console.log(currentUser?._id) %>
+        <% console.log(campground.author === new ObjectId('66f593ac46ed7332caec0fde') ) %>
+       
+        <% if(campground.author?.equals(currentUser?._id)) { %>
         <button class="btn btn-danger">Delete</button>
+        <% } %>
       </form>
 
       </div>
