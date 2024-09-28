@@ -1,42 +1,41 @@
 <% layout('layouts/boilerplate') %>
-<h1>All Campgrounds</h1>
-<div>
-  <a href="/campgrounds/new" style="color:aliceblue">Add New Campground</a>
-</div>
+  <h1>All Campgrounds</h1>
+  <div>
+    <a href="/campgrounds/new" style="color:aliceblue">Add New Campground</a>
+  </div>
 
-<% campgrounds.forEach(function(campground) { %>
-<div class="card" md-3>
-  <div class="row">
-    <div class="col-md-3">
-      <img src="<%= campground?.images[0]?.url %>" class="img-fluid" alt="..." />
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title"><%= campground.title %></h5>
-        <p class="card-text">
-         <%= campground.description %>
-        <p class="card-text">
-          <small class="text-muted"><%= campground.location %></small>
-        </p>
-        
-        
-        <form
-        action="/campgrounds/<%= campground._id %>?_method=DELETE"
-        method="POST"
-        >
-        <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">Show</a>
-        <% console.log(currentUser?._id) %>
-        <% console.log('testtttt') %>
-        <% console.log(adminWolfgang) %>
-     
-       
-        <% if(campground.author?.equals(currentUser?._id)) { %>
-        <button class="btn btn-danger">Delete</button>
-        <% } %>
-      </form>
+  <% campgrounds.forEach(function(campground) { %>
+    <div class="card" md-3>
+      <div class="row">
+        <div class="col-md-3">
+          <img src="<%= campground?.images[0]?.url %>" class="img-fluid" alt="..." />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= campground.title %>
+            </h5>
+            <p class="card-text">
+              <%= campground.description %>
+                <p class="card-text">
+                  <small class="text-muted">
+                    <%= campground.location %>
+                  </small>
+                </p>
 
+
+                <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+                  <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">Show</a>
+
+
+
+                  <% if(campground.author?.equals(currentUser?._id)) { %>
+                    <button class="btn btn-danger">Delete</button>
+                    <% } %>
+                </form>
+
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<% }) %>
+    <% }) %>
