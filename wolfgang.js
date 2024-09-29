@@ -168,7 +168,18 @@ globalThis.geocoder = wolfgang.mbxGeocoding({ accessToken: process.env.MAPBOX_TO
 globalThis.MAPBOX_TOKEN = process.env.MAPBOX_TOKEN
 
 
-globalThis.adminWolfgang = new mongoose.Types.ObjectId('66f593ac46ed7332caec0fde');
+
+
+
+
+
+globalThis.wolftest = async () => {
+  const adminWolfgang = await User.findById('66f593ac46ed7332caec0fde')
+  console.log(adminWolfgang)
+  globalThis.adminWolfgang = adminWolfgang
+}
+
+globalThis.wolftest()
 
 exports
 
