@@ -1,7 +1,7 @@
 // TO MAKE THE MAP APPEAR YOU MUST
 	// ADD YOUR ACCESS TOKEN FROM
 	// https://account.mapbox.com
-	mapboxgl.accessToken = 'pk.eyJ1Ijoid29sZmdhbmdiZXJnaW4iLCJhIjoiY20wbDAxZHRlMDBiYTJwbjZxbXJkaG4xbiJ9.zk6rIj3nKgdhGY3fQfbtVA';
+	mapboxgl.accessToken = mapboxToken;
     const map = new mapboxgl.Map({
         container: 'map',
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
