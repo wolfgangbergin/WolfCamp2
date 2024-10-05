@@ -15,7 +15,7 @@ const seedDB = async () => {
       author: '66f593ac46ed7332caec0fde',
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${descriptors[Math.floor(Math.random() * descriptors.length)]} ${places[Math.floor(Math.random() * places.length)]}`,
-      geometry: { type: 'Point', coordinates: [ -83.04738, 42.332363 ] },
+      geometry: { type: 'Point', coordinates: [ cities[random1000].longitude, cities[random1000].latitude ] },
       price,
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum? Quod, voluptatibus. Quibusdam, quae. Quod, quidem. Quaerat, quae. Quisquam, voluptatum? Quod, voluptatibus. Quibusdam, quae. Quod, quidem. Quaerat, quae.',
       //image: 'https://www.desmoinesregister.com/gcdn/-mm-/a3bf82da6e654f6ea9c4df986dbf0437dc9f9c72/c=0-125-2762-1685/local/-/media/2015/02/23/IAGroup/DesMoines/635603064337329282-des.M0223FDFire009.JPG?width=700&height=396&fit=crop&format=pjpg&auto=webp',
