@@ -123,4 +123,3 @@ map.on('load', () => {
     map.getCanvas().style.cursor = ''
   })
 })
- ///test1
